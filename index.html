@@ -1,117 +1,68 @@
-<!DOCTYPE html>
-<html lang="en" data-theme="light">
+﻿<!DOCTYPE html>
+<html lang=en data-theme=dark>
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset=utf-8 />
+  <meta name=viewport content=width=device-width, initial-scale=1 />
   <title>Panthakan Boonsuriyatham — Portfolio</title>
-  <meta name="description" content="Portfolio of Panthakan Boonsuriyatham — Data Scientist/AI Researcher. Projects, CV, and certifications." />
-  <meta name="author" content="Panthakan Boonsuriyatham" />
+  <meta name=description content="Portfolio of Panthakan Boonsuriyatham — AI Researcher focused on retrieval systems, RAG, and knowledge graphs. Projects, CV, and certifications." />
+  <meta name=author content=Panthakan Boonsuriyatham />
 
   <!-- Open Graph / Twitter -->
-  <meta property="og:title" content="Panthakan Boonsuriyatham — Data Scientist/AI Researcher" />
-  <meta property="og:description" content="Projects, CV, and certifications." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://panthbs.github.io/" />
-  <meta property="og:image" content="https://panthbs.github.io/assets/preview.png" />
-  <meta name="twitter:card" content="summary_large_image" />
+  <meta property=og:title content="Panthakan Boonsuriyatham — AI Researcher — Retrieval & Knowledge Systems" />
+  <meta property=og:description content="AI researcher building retrieval systems, RAG pipelines, and knowledge graphs. Projects, CV, and certifications." />
+  <meta property=og:type content=website />
+  <meta property=og:url content=https://panthbs.github.io/ />
+  <meta property=og:image content=https://panthbs.github.io/assets/preview.png />
+  <meta name=twitter:card content=summary_large_image />
 
   <!-- Favicon -->
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle fill='%232563eb' cx='50' cy='50' r='50'/%3E%3Ctext x='50' y='57' font-size='50' text-anchor='middle' fill='white' font-family='Rubik, sans-serif'%3EPB%3C/text%3E%3C/svg%3E"/>
+  <link rel=icon href=data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle fill='%236a9679' cx='50' cy='50' r='50'/%3E%3Ctext x='50' y='57' font-size='50' text-anchor='middle' fill='%231C1C1C' font-family='Tinos, serif'%3EPB%3C/text%3E%3C/svg%3E/>
 
   <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel=preconnect href=https://fonts.googleapis.com />
+  <link rel=preconnect href=https://fonts.gstatic.com crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel=stylesheet />
+  <link rel=stylesheet href=./assets/css/theme.css />
 
   <style>
+    /* Main page specific overrides */
     :root {
-      --bg: #ffffff;
-      --text: #111111;
-      --muted: #666666;
-      --brand: #ff8b00;
-      --card: #f7f7f7;
-      --border: #e5e7eb;
+      --bg: var(--bg-color);
+      --text: var(--text-main);
+      --muted: var(--text-muted);
+      --brand: var(--accent);
+      --card: var(--card-bg);
+      --border: var(--border);
     }
-    [data-theme="dark"] {
-      --bg: #0b1020;
-      --text: #e5e7eb;
-      --muted: #9aa4b2;
-      --brand: #60a5fa;
-      --card: #121933;
-      --border: #23304f;
-    }
-    [data-theme="dark"] .name { color: #17E1E5; }
-    [data-theme="dark"] .social-links a { color: #FFFAE3; }
-    html, body { height: 100%; }
+        html, body { height: 100%; }
     body {
       margin: 0;
-      font-family: 'Rubik', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      font-family: 'Tinos', serif;
       background: var(--bg);
       color: var(--text);
       line-height: 1.6;
+      padding-top: 140px;
     }
-    .container { max-width: 1000px; margin: 0 auto; padding: 24px; padding-top: 120px; }
-    header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 1000;
-      background: var(--bg);
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 16px;
-      padding: 8px 24px 24px;
-      border-bottom: 1px solid var(--border);
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-
-    .brand { display: flex; align-items: center; gap: 16px; }
-    .avatar {
-      width: 64px; height: 64px; border-radius: 50%; background: var(--card);
-      display: grid; place-items: center; font-size: 28px; border: 1px solid var(--border);
-      overflow: hidden;
-    }
-    .name { font-size: 1.5rem; font-weight: 700; display: flex; align-items: center; gap: 8px; color: rgb(0,81,116); }
-    .social-links { display: inline-flex; gap: 8px; align-items: center; }
-    .social-links a { display: inline-flex; align-items: center; justify-content: center; opacity: 0.7; transition: opacity 0.3s ease; padding: 4px; }
-    .social-links a:hover { opacity: 1; }
-    .social-links svg { width: 28px; height: 28px; }
-    .subtitle { color: var(--muted); font-size: 0.95rem; }
-    .header-right {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      align-items: flex-end;
-    }
-    .header-contact {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .header-contact .btn {
-      padding: 8px 12px;
-      font-size: 0.9rem;
-    }
-    nav { display: flex; align-items: center; gap: 8px; }
-    nav a {
-      color: var(--text); text-decoration: none;
-    }
-    nav a:hover { color: var(--brand); }
-    nav .separator { color: var(--muted); user-select: none; }
-    .theme-toggle { cursor: pointer; border: none; padding: 8px; background: transparent; margin-left: 8px; }
+    .container { padding: 24px; max-width: 1000px; margin: 0 auto; }
     .section { padding: 32px 0; scroll-margin-top: 72px; }
+    .hero { background-color: var(--bg-color); color: var(--text-main); padding: 48px 0; }
+    .hero h1 { color: #4A3B32; }
+    .hero h1, .hero p, .hero ul, .hero li { color: var(--text-main); }
+    [data-theme="dark"] .hero { background-color: var(--bg-color); color: var(--text-main); }
+    [data-theme="dark"] .hero h1 { color: #EAEAEA; }
+    [data-theme="dark"] .hero h1, [data-theme="dark"] .hero p, [data-theme="dark"] .hero ul, [data-theme="dark"] .hero li { color: var(--text-main); }
     .section h2 { margin: 0 0 12px; font-size: 1.4rem; }
+    .section h2 a { color: var(--text); text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
+    .section h2 a:hover { color: var(--brand); }
+    .section h2 a::after { content: '↗'; font-size: 0.8em; opacity: 0.6; }
+    .section h2 a:hover::after { opacity: 1; transform: translate(2px, -2px); }
     .lead { color: var(--muted); margin: 4px 0 16px; }
     .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 16px; }
     .col-4 { grid-column: span 4; } .col-6 { grid-column: span 6; } .col-8 { grid-column: span 8; } .col-12 { grid-column: span 12; }
     
     /* Responsive styles for medium screens */
     @media (max-width: 1100px) {
-      .container { padding-top: 200px; }
-      .section { scroll-margin-top: 200px; }
+      body { padding-top: 200px; }
       
       header {
         flex-wrap: wrap;
@@ -141,12 +92,6 @@
       
       .brand {
         gap: 12px;
-      }
-      
-      .avatar {
-        width: 48px;
-        height: 48px;
-        font-size: 20px;
       }
       
       .name {
@@ -191,11 +136,6 @@
       .name {
         font-size: 0.95rem;
       }
-      
-      .social-links svg {
-        width: 20px;
-        height: 20px;
-      }
     }
 
 
@@ -203,17 +143,10 @@
       background: var(--card); border: 1px solid var(--border); border-radius: 12px;
       padding: 16px;
     }
-    .pill { display: inline-flex; align-items: center; gap: 6px; padding: 6px 10px; border-radius: 999px; border: 1px solid var(--border); margin: 4px 6px 0 0; }
+    .pill { display: inline-flex; align-items: center; gap: 6px; padding: 6px 10px; border-radius: 999px; border: 1px solid var(--muted); margin: 4px 6px 0 0; }
     .pill img { width: 16px; height: 16px; }
-    .btn {
-      display: inline-block; padding: 10px 14px; border-radius: 10px; text-decoration: none;
-      background: var(--brand); color: white; font-weight: 600;
-    }
     .btn.secondary { background: transparent; color: var(--text); border: 1px solid var(--border); }
     .social-links { display: inline-flex; gap: 8px; align-items: center; }
-    .social-links a { display: inline-block; opacity: 0.7; transition: opacity 0.3s ease; }
-    .social-links a:hover { opacity: 1; }
-    .social-links svg { width: 24px !important; height: 24px !important; }
     .list { margin: 0; padding-left: 18px; }
     .list li { margin-bottom: 6px; }
 
@@ -233,7 +166,8 @@
       color: var(--text);
     }
 
-    footer { border-top: 1px solid var(--border); padding: 24px 0; color: var(--muted); font-size: 0.9rem; }
+    footer { border-top: 1px solid var(--border); padding: 24px 0; color: var(--muted); font-size: 0.9rem; background-color: var(--card-bg); color: var(--accent); }
+    [data-theme="dark"] footer { background-color: var(--card-bg); color: var(--accent); }
 
     /* Print-friendly CV */
     @media print {
@@ -279,7 +213,7 @@
       justify-content: center;
       padding: 16px 12px;
       border-radius: 12px;
-      color: white;
+      color: var(--text-main);
       text-decoration: none;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       height: 160px;
@@ -314,32 +248,30 @@
   </style>
 
   <!-- Schema.org Person -->
-  <script type="application/ld+json">
+  <script type=application/ld+json>
   {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Panthakan Boonsuriyatham",
-    "jobTitle": "Data Scientist/AI Researcher",
-    "url": "https://panthbs.github.io/",
-    "sameAs": [
-      "https://www.linkedin.com/in/panthbs/",
-      "https://github.com/panthbs"
+    @context: https://schema.org,
+    @type: Person,
+    name: Panthakan Boonsuriyatham,
+    jobTitle: AI Researcher — Retrieval & Knowledge Systems,
+    url: https://panthbs.github.io/,
+    sameAs: [
+      https://www.linkedin.com/in/panthbs/,
+      https://github.com/panthbs
     ]
   }
   </script>
-  <script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
+  <script type=text/javascript async src=//cdn.credly.com/assets/utilities/embed.js></script>
 </head>
 <body>
   <div class="container">
     <header>
       <div class="brand">
-        <div class="avatar" aria-hidden="true">PB</div>
+        <img src="assets/images/profile_2025.JPG" alt="Panthakan Seenam Boonsuriyatham" class="avatar">
         <div>
-          <div class="name">
-            Panthakan "Seenam" Boonsuriyatham
-          </div>
-          <div class="subtitle">Data Scientist/AI Researcher at <a href="https://www.fusionsol.com/" target="_blank" rel="noopener">Fusion Solution</a> • Bangkok • Thailand</div>
-          <div class="subtitle">Math | Stats | ML | NLP | Analytics</div>
+          <div class="name">Panthakan Seenam Boonsuriyatham</div>
+          <div class="subtitle">AI Researcher at <a href="https://www.fusionsol.com/" target="_blank" rel="noopener">Fusion Solution</a> • Bangkok • Thailand</div>
+          <div class="subtitle">Retrieval Systems | RAG | Knowledge Graphs | LLMs | Machine Learning</div>
         </div>
       </div>
       <div class="header-right">
@@ -362,43 +294,45 @@
             </a>
           </span>
           <a class="btn" href="mailto:panthakan@fusionsol.com">Contact Me</a>
+          <button class="theme-toggle" id="theme-btn" aria-label="Toggle theme">🌙</button>
         </div>
         <nav aria-label="Primary">
-          <a href="#about">About</a>
+          <a href="./">Home</a>
           <span class="separator">|</span>
-          <a href="#skills">Skills</a>
+          <a href="./projects/">Projects</a>
           <span class="separator">|</span>
-          <a href="#projects">Projects</a>
+          <a href="./certifications/">Certifications</a>
           <span class="separator">|</span>
-          <a href="#certs">Certifications</a>
+          <a href="./education/">Education</a>
           <span class="separator">|</span>
-          <a href="#cv">CV</a>
-          <button class="theme-toggle" id="themeBtn" aria-label="Toggle theme">🌙</button>
+          <a href=./cv/>CV</a>
         </nav>
       </div>
     </header>
 
     <!-- Hero -->
-    <section class="section grid">
-      <div class="col-8">
-        <h1 style="margin:0;">I turn data into AI-powered solutions.</h1>
-        <p class="lead">Data Scientist &amp; AI Researcher specializing in machine learning, statistical modeling, and AI system development. Experienced in deploying production-grade solutions across retail businesses, business analytics, and research domains.</p>
+    <section class="section grid hero">
+      <div class=col-8>
+        <h1 style="margin:0;">I build AI solutions from problems and ideas.</h1>
+        <p class=lead>AI Researcher focused on knowledge management, retrieval systems, RAG, and knowledge-graph design. I start from a problem and compose the right ML &amp; AI techniques into end-to-end solutions—across research, government, and industry.</p>
         <strong>Key Achievements</strong>
-        <ul class="list">
-          <li>Build end-to-end data pipelines using Azure, SQL, and Python frameworks</li>
-          <li>Thailand representative presenting AI-driven disease classification solutions</li>
-          <li>Continuously certified across multiple technologies, committed to lifelong learning</li>
-          <li>Hands-on experience across diverse domains—from government to retail analytics</li>
+        <ul class=list>
+          <li>Designed an information-retrieval framework powered by a knowledge graph, and built smart search and agentic RAG chatbots for government and enterprise clients</li>
+          <li>Silver Award Winner (Runner-up) and Thailand representative at ASEAN Digital Awards 2026 for AI-driven agricultural disease classification</li>
+          <li>Pursuing a PhD in Computer Science with a research focus on Information Retrieval</li>
+          <li>Continuously certified across cloud and AI technologies, committed to lifelong learning</li>
         </ul>
       </div>
     </section>
 
     <!-- About -->
-    <section id="about" class="section">
+    <section id=about class=section>
       <h2>About</h2>
       <p>
-        Data Scientist with a focus on practical ML, experimentation, and clear communication. I enjoy building
-        systems end-to-end—from data ingestion and modeling to monitoring and stakeholder storytelling.
+        AI Researcher who turns problems and ideas into working AI systems. My work centers on knowledge
+        management and retrieval—designing knowledge graphs, building RAG pipelines, and applying LLMs and
+        classical ML where each fits best. I like building systems end-to-end, from problem framing and
+        retrieval design to deployment, monitoring, and clear communication with stakeholders.
       </p>
     </section>
 
@@ -406,19 +340,31 @@
     <section id="skills" class="section">
       <h2>Skills</h2>
       <div class="card">
-        <h3 style="margin:0 0 12px; font-size: 1rem; color: var(--muted);">Cloud and Data Platforms</h3>
-        <div class="skills-pills">
-          <span class="pill"><img src="https://www.azureicons.com/static/images/icons/Other/svg/Azure-A.svg" alt="AzureA">Microsoft Azure Cloud Platform</span>
-          <span class="pill"><img src="https://www.azureicons.com/static/images/icons/AI-and-Machine-Learning/svg/Machine-Learning.svg" alt="AzureML">Azure ML</span>
-          <span class="pill"><img src="https://www.azureicons.com/static/images/icons/AI-and-Machine-Learning/svg/AI-Studio.svg" alt="AI-Studio">Azure AI Studio</span>
-          <span class="pill"><img src="https://www.microsoft.com/content/dam/microsoft/final/en-us/microsoft-product-and-services/microsoft-fabric/FBR-Fabric_icon.svg" alt="Fabric">Microsoft Fabric</span>
-          <span class="pill"><img src="https://www.microsoft.com/content/dam/microsoft/final/en-us/microsoft-product-and-services/power-platform/icon-powerBI.svg" alt="BI">Microsoft Power BI</span>
-          <span class="pill"><img src="https://www.gstatic.com/pantheon/images/welcome/supercloud.svg" alt="GCP">Google Cloud Platform</span>
+        <h3 style="margin: 0 0 12px; font-size: 1rem; color: var(--muted);">Knowledge Systems &amp; Generative AI</h3>
+        <div class=skills-pills>
+          <span class=pill>Retrieval-Augmented Generation (RAG)</span>
+          <span class=pill>Knowledge Graphs</span>
+          <span class=pill>Information Retrieval</span>
+          <span class=pill>Semantic Search</span>
+          <span class=pill>Vector Databases</span>
+          <span class=pill>Embeddings</span>
+          <span class=pill>Large Language Models (LLMs)</span>
+          <span class=pill>Agentic AI</span>
+        </div>
+
+        <h3 style="margin: 16px 0 12px; font-size: 1rem; color: var(--muted);">Cloud and Data Platforms</h3>
+        <div class=skills-pills>
+          <span class=pill><img src=https://www.azureicons.com/static/images/icons/Other/svg/Azure-A.svg alt=AzureA>Microsoft Azure Cloud Platform</span>
+          <span class=pill><img src=https://www.azureicons.com/static/images/icons/AI-and-Machine-Learning/svg/Machine-Learning.svg alt=AzureML>Azure ML</span>
+          <span class=pill><img src=https://www.azureicons.com/static/images/icons/AI-and-Machine-Learning/svg/AI-Studio.svg alt=AI-Studio>Azure AI Studio</span>
+          <span class=pill><img src=https://www.microsoft.com/content/dam/microsoft/final/en-us/microsoft-product-and-services/microsoft-fabric/FBR-Fabric_icon.svg alt=Fabric>Microsoft Fabric</span>
+          <span class=pill><img src=https://www.microsoft.com/content/dam/microsoft/final/en-us/microsoft-product-and-services/power-platform/icon-powerBI.svg alt=BI>Microsoft Power BI</span>
+          <span class=pill><img src=https://www.gstatic.com/pantheon/images/welcome/supercloud.svg alt=GCP>Google Cloud Platform</span>
           <span class="pill"><img src="https://www.gstatic.com/bricks/image/cf69f322-f5ae-4d81-80e4-3dd008aca174.svg" alt="VertexAI">Google Vertex AI</span>
           <span class="pill"><img src="https://www.gstatic.com/bricks/image/66865bbbc3db738c97d9d27bec7bd6032fa5955578c79899ea4500c43fd0f2f0.svg" alt="BigQuery">Google BigQuery</span>
         </div>
 
-        <h3 style="margin:16px 0 12px; font-size: 1rem; color: var(--muted);">Programming Languages</h3>
+        <h3 style="margin: 16px 0 12px; font-size: 1rem; color: var(--muted);">Programming Languages</h3>
         <div class="skills-pills">
           <span class="pill">Python</span>
           <span class="pill">R</span>
@@ -428,7 +374,7 @@
           <span class="pill">SQL</span>
         </div>
         
-        <h3 style="margin:16px 0 12px; font-size: 1rem; color: var(--muted);">Python Libraries & Frameworks</h3>
+        <h3 style="margin: 16px 0 12px; font-size: 1rem; color: var(--muted);">Python Libraries & Frameworks</h3>
         <div class="skills-pills">
           <span class="pill">pandas</span>
           <span class="pill">NumPy</span>
@@ -438,7 +384,7 @@
           <span class="pill">PyTorch</span>
         </div>
         
-        <h3 style="margin:16px 0 12px; font-size: 1rem; color: var(--muted);">Data Visualization</h3>
+        <h3 style="margin: 16px 0 12px; font-size: 1rem; color: var(--muted);">Data Visualization</h3>
         <div class="skills-pills">
           <span class="pill">Seaborn</span>
           <span class="pill">Matplotlib</span>
@@ -448,119 +394,128 @@
     </section>
 
     <!-- Projects -->
-    <section id="projects" class="section">
-      <h2>Selected Projects</h2>
-      <div class="grid">
-        <article class="col-6 card">
-          <h3 style="margin:0 0 6px;">Product Recommendation Model</h3>
-          <p class="lead">Suggest potential products for each customer.</p>
-          <ul class="list">
-            <li>Data: Customers across all regions of Thailand, over 200 products</li>
-            <li>Techniques: Collaborative filtering, matrix factorization, association rule mining, deep learning</li>
+    <section id=projects class=section>
+      <h2><a href=./projects/>Selected Projects</a></h2>
+      <div class=grid>
+        <article class=col-6 card>
+          <h3 style="margin:0 0 6px;">Knowledge-Graph Retrieval &amp; Smart Search</h3>
+          <p class=lead>An information-retrieval framework powered by a knowledge graph, deployed as a smart search engine for government services.</p>
+          <ul class=list>
+            <li>Framework: information retrieval framework built on a knowledge graph (Fusion Solution R&amp;D)</li>
+            <li>Deployed as a smart search engine for a government digital-services platform</li>
+            <li>Techniques: Knowledge graphs, semantic search, query routing, NLP</li>
           </ul>
         </article>
 
-        <article class="col-6 card">
-          <h3 style="margin:0 0 6px;">Customer Segmentation Model</h3>
-          <p class="lead">Group customers into meaningful segments for targeted marketing by their behavior and preferences.</p>
-          <ul class="list">
-            <li>Data: Customer behavior and preferences across multiple channels across all regions of Thailand, over 1M customers</li>
-            <li>Clustering techniques: K-means, hierarchical clustering, DBSCAN</li>
+        <article class=col-6 card>
+          <h3 style="margin:0 0 6px;">Agentic RAG Chatbots</h3>
+          <p class=lead>Retrieval-augmented, agentic chatbots that ground LLM answers in trusted enterprise knowledge.</p>
+          <ul class=list>
+            <li>Agentic AI chatbot for medical document summarization (insurance sector)</li>
+            <li>Chatbot for call-center operations (public sector)</li>
+            <li>Techniques: RAG, LLMs, agentic workflows, retrieval over enterprise sources</li>
           </ul>
         </article>
 
-        <article class="col-6 card">
-          <h3 style="margin:0 0 6px;">Disease Classification Model</h3>
-          <p class="lead">Classify diseases in corn crops using image data.</p>
-          <ul class="list">
-            <li>Collaboration: Kasetsart University, National Corn and Sorghum Research Center Thailand</li>
-            <li>Recognition: Thailand representative in digital innovation sector for ASEAN Digital Awards 2026</li>
-            <li>Model: ResNET</li>
+        <article class=col-6 card>
+          <h3 style="margin:0 0 6px;">Intelligent AgriDiagnose</h3>
+          <p class=lead>AI-powered corn disease classification integrated into messaging platforms—no app downloads required.</p>
+          <ul class=list>
+            <li>Recognition: Silver Award Winner (Runner-up) at ASEAN Digital Awards 2026, Digital Innovation Category</li>
+            <li>Thailand representative for ASEAN region in Digital Innovation sector</li>
+            <li>Technology: Deep Learning (ResNet), integrated into Line, WhatsApp, Facebook Messenger</li>
+            <li>Collaboration: Kasetsart University, Thailand National Corn Research Center</li>
           </ul>
         </article>
 
-        <article class="col-6 card">
-          <h3 style="margin:0 0 6px;">Search Engine Model</h3>
-          <p class="lead">Search for relevant information/products based on user queries.</p>
-          <ul class="list">
-            <li>Techniques: Query Preprocessing, Natural Language Processing</li>
-            <li>Model: Query routing model</li>
-            <li>Data: Over 300 different products to retrieve information from</li>
+        <article class=col-6 card>
+          <h3 style="margin:0 0 6px;">Applied ML for Retail</h3>
+          <p class=lead>Production ML solutions built from business problems across all regions of Thailand.</p>
+          <ul class=list>
+            <li>Product recommendation across 200+ products (collaborative filtering, matrix factorization, deep learning)</li>
+            <li>Customer segmentation for 1M+ customers (K-means, hierarchical clustering, DBSCAN)</li>
           </ul>
         </article>
       </div>
 
       <div style="margin-top: 12px;">
-        <div class="other-projects">
-          <span class="project-tag">Sentiment Analysis</span>
-          <span class="project-tag">Demand Forecasting</span>
+        <div class=other-projects>
+          <span class=project-tag>Sentiment Analysis</span>
+          <span class=project-tag>Demand Forecasting</span>
+          <span class=project-tag>Thai OCR Accuracy</span>
         </div>
       </div>
     </section>
 
     <!-- Certifications -->
-    <section id="certs" class="section">
-      <h2>Certifications</h2>
-      <p class="lead">Professional certifications and verified credentials.</p>
+    <section id=certs class=section>
+      <h2><a href=./certifications/>Certifications</a></h2>
+      <p class=lead>Professional certifications and verified credentials.</p>
       
       <!-- Microsoft Learn Credentials -->
-      <div class="card">
+      <div class=card>
         <h3 style="margin:0 0 16px;">Microsoft Certified Credentials</h3>
-        <div class="cert-grid">
-          <a href="https://learn.microsoft.com/api/credentials/share/en-us/panthakan/47509D7BF6A2609D?sharingId=330F3C1D8EDC20CC" target="_blank" class="cert-tile" style="background: rgb(0, 171, 229);">
-            <img src="https://learn.microsoft.com/media/learn/certification/badges/microsoft-certified-fundamentals-badge.svg" alt="Certificate" class="cert-icon">
-            <div class="cert-info">Microsoft Certified</div>
-            <div class="cert-title">Azure AI Fundamentals</div>
+        <div class=cert-grid>
+          <a href=https://learn.microsoft.com/api/credentials/share/en-us/panthakan/47509D7BF6A2609D?sharingId=330F3C1D8EDC20CC target=_blank class=cert-tile style="background: #6a9679;">
+            <img src=https://learn.microsoft.com/media/learn/certification/badges/microsoft-certified-fundamentals-badge.svg alt=Certificate class=cert-icon>
+            <div class=cert-info>Microsoft Certified</div>
+            <div class=cert-title>Azure AI Fundamentals</div>
           </a>
           
-          <a href="https://learn.microsoft.com/api/credentials/share/en-us/panthakan/114C2C3D1519A18?sharingId=330F3C1D8EDC20CC" target="_blank" class="cert-tile" style="background: rgb(0, 126, 192);">
-            <img src="https://learn.microsoft.com/media/learn/certification/badges/microsoft-certified-associate-badge.svg" alt="Certificate" class="cert-icon">
-            <div class="cert-info">Microsoft Certified</div>
-            <div class="cert-title">Azure AI Engineer Associate</div>
+          <a href=https://learn.microsoft.com/api/credentials/share/en-us/panthakan/114C2C3D1519A18?sharingId=330F3C1D8EDC20CC target=_blank class=cert-tile style="background: #6a9679;">
+            <img src=https://learn.microsoft.com/media/learn/certification/badges/microsoft-certified-associate-badge.svg alt=Certificate class=cert-icon>
+            <div class=cert-info>Microsoft Certified</div>
+            <div class=cert-title>Azure AI Engineer Associate</div>
           </a>
           
-          <a href="https://learn.microsoft.com/api/credentials/share/en-us/panthakan/40235EC959AC1842?sharingId=330F3C1D8EDC20CC" target="_blank" class="cert-tile" style="background: rgb(0, 126, 192);">
-            <img src="https://learn.microsoft.com/media/learn/certification/badges/microsoft-certified-associate-badge.svg" alt="Certificate" class="cert-icon">
-            <div class="cert-info">Microsoft Certified</div>
-            <div class="cert-title">Azure Data Scientist Associate</div>
+          <a href=https://learn.microsoft.com/api/credentials/share/en-us/panthakan/40235EC959AC1842?sharingId=330F3C1D8EDC20CC target=_blank class=cert-tile style="background: #6a9679;">
+            <img src=https://learn.microsoft.com/media/learn/certification/badges/microsoft-certified-associate-badge.svg alt=Certificate class=cert-icon>
+            <div class=cert-info>Microsoft Certified</div>
+            <div class=cert-title>Azure Data Scientist Associate</div>
           </a>
           
-          <a href="https://learn.microsoft.com/api/credentials/share/en-us/panthakan/739049C54B9BEF8F?sharingId=330F3C1D8EDC20CC" target="_blank" class="cert-tile" style="background: rgb(0, 126, 192);">
-            <img src="https://learn.microsoft.com/media/learn/certification/badges/microsoft-certified-associate-badge.svg" alt="Certificate" class="cert-icon">
-            <div class="cert-info">Microsoft Certified</div>
-            <div class="cert-title">Fabric Analytics Engineer Associate</div>
+          <a href=https://learn.microsoft.com/api/credentials/share/en-us/panthakan/739049C54B9BEF8F?sharingId=330F3C1D8EDC20CC target=_blank class=cert-tile style="background: #6a9679;">
+            <img src=https://learn.microsoft.com/media/learn/certification/badges/microsoft-certified-associate-badge.svg alt=Certificate class=cert-icon>
+            <div class=cert-info>Microsoft Certified</div>
+            <div class=cert-title>Fabric Analytics Engineer Associate</div>
           </a>
           
-          <a href="https://learn.microsoft.com/api/credentials/share/en-us/panthakan/5FCD7E0531529F25?sharingId=330F3C1D8EDC20CC" target="_blank" class="cert-tile" style="background: rgb(0, 126, 192);">
-            <img src="https://learn.microsoft.com/media/learn/certification/badges/microsoft-certified-associate-badge.svg" alt="Certificate" class="cert-icon">
-            <div class="cert-info">Microsoft Certified</div>
-            <div class="cert-title">Fabric Data Engineer Associate</div>
+          <a href=https://learn.microsoft.com/api/credentials/share/en-us/panthakan/5FCD7E0531529F25?sharingId=330F3C1D8EDC20CC target=_blank class=cert-tile style="background: #6a9679;">
+            <img src=https://learn.microsoft.com/media/learn/certification/badges/microsoft-certified-associate-badge.svg alt=Certificate class=cert-icon>
+            <div class=cert-info>Microsoft Certified</div>
+            <div class=cert-title>Fabric Data Engineer Associate</div>
+          </a>
+
+          <a href=https://learn.microsoft.com/api/credentials/share/en-u/panthakan/85E4AFE28E96BF5A?sharingId=330F3C1D8EDC20CC target=_blank class=cert-tile style="background: #6a9679;">
+            <img src=https://learn.microsoft.com/media/learn/certification/badges/microsoft-certified-associate-badge.svg alt=Certificate class=cert-icon>
+            <div class=cert-info>Microsoft Certified</div>
+            <div class=cert-title>Information Security Administrator Associate</div>
           </a>
 
         </div>
         
         <h3 style="margin:16px 0 16px;">Google Cloud Certified Credentials</h3>
-        <div class="cert-grid">
-          <a href="https://www.credly.com/badges/c3413eac-d775-40dd-b5c2-8707c33259c1/public_url" target="_blank" class="cert-tile" style="background: rgb(234, 80, 1);">
-            <img src="https://images.credly.com/size/680x680/images/05e71e7e-92a1-4821-8530-4176b2e3c4b4/image.png" alt="Certificate" class="cert-icon">
-            <div class="cert-info">Google Cloud Certified</div>
-            <div class="cert-title">Professional Machine Learning Engineer</div>
+        <div class=cert-grid>
+          <a href=https://www.credly.com/badges/c3413eac-d775-40dd-b5c2-8707c33259c1/public_url target=_blank class=cert-tile style="background: #6a9679;">
+            <img src=https://images.credly.com/size/680x680/images/05e71e7e-92a1-4821-8530-4176b2e3c4b4/image.png alt=Certificate class=cert-icon>
+            <div class=cert-info>Google Cloud Certified</div>
+            <div class=cert-title>Professional Machine Learning Engineer</div>
           </a>
         </div>
       </div>
     </section>
 
     <!-- CV -->
-    <section id="cv" class="section">
-      <h2>CV</h2>
-      <div class="card">
-        <h3 style="margin:0 0 6px;">Experience</h3>
-        <ul class="list">
+    <section id=cv class=section>
+      <h2><a href=./education/>Education</a></h2>
+      <div class=card>
+          <h3 style="margin:0 0 6px;">Experience</h3>
+        <ul class=list>
           <li><strong>Data Scientist</strong> — Fusion Solution (May 2025–present). Build ML models and solve retail business needs.</li>
           <li><strong>AI Researcher</strong> — Fusion Solution (August 2025–present). Develop AI techniques for R&D Team.</li>
         </ul>
-        <h3 style="margin:16px 0 6px;">Education</h3>
-        <ul class="list">
+          <h3 style="margin:16px 0 6px;">Education</h3>
+        <ul class=list>
           <li>
             <strong>PhD in Computer Science</strong> — Chulalongkorn University, 2026 - present
             <br><span style="color: var(--muted); font-size: 0.9rem;">Research Area: Information Retrieval</span>
@@ -582,55 +537,41 @@
             <br><span style="color: var(--muted); font-size: 0.9rem;">Project: Some Properties of Prime-Cubed Cyclotomic Cosets in Cyclic Group ℤ<sub style="font-family: 'Times New Roman', serif;"><i>m</i></sub></span>
           </li>
         </ul>
-        <h3 style="margin:16px 0 6px;">Scholarships & Funding</h3>
-        <ul class="list">
+          <h3 style="margin:16px 0 6px;">Scholarships & Funding</h3>
+        <ul class=list>
           <li>Fully funded DPST scholarship for higher-level study abroad (2020–2024)</li>
           <li>Fully funded government scholarship for Science and Technology (DPST) (2014–2024)</li>
           <li>Outstanding Student Scholarship, Silpakorn University (2016–2020)</li>
         </ul>
-        <h3 style="margin:16px 0 6px;">Awards & Recognition</h3>
-        <ul class="list">
-          <li>Thailand Representative, ASEAN Digital Awards 2026 (Digital Innovation Category)</li>
+          <h3 style="margin:16px 0 6px;">Awards & Recognition</h3>
+        <ul class=list>
+          <li>Silver Award (Runner-up) — ASEAN Digital Awards 2026, Digital Innovation Category, Hanoi, Vietnam (January 15, 2026)</li>
+          <li>Thailand Representative for ASEAN region in Digital Innovation sector at ASEAN Digital Awards 2026</li>
           <li>Best Undergraduate Project Presentation Award in Mathematics, DPST Conference (2020)</li>
           <li>DPST Short Research Award, University of California, San Diego (2019)</li>
         </ul>
-        <h3 style="margin:16px 0 6px;">Talks & Teaching</h3>
-        <ul class="list">
+          <h3 style="margin:16px 0 6px;">Talks & Teaching</h3>
+        <ul class=list>
           <li>Precalculus Tutor for First-Year Science Students, Silpakorn University (2017–2019)</li>
         </ul>
         <div style="margin-top:12px;">
-          <a href="/assets/Panthakan_Boonsuriyatham_CV.pdf" class="btn" target="_blank">Download CV (Soon)</a>
+          <a href=./cv/ class=btn>View CV</a>
         </div>
       </div>
     </section>
 
     <footer>
-      <div>© <span id="year"></span> Panthakan Boonsuriyatham • Built with GitHub Pages</div>
-      <div style="margin-top: 8px; font-size: 0.85rem;">Last updated: December 28, 2025</div>
+      <div>© <span id=year></span> Panthakan Boonsuriyatham • Built with GitHub Pages</div>
+      <div style="margin-top: 8px; font-size: 0.85rem;">Last updated: July 4, 2026</div>
     </footer>
   </div>
 
   <script>
     // Year
     document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Theme toggle (persist to localStorage)
-    const root = document.documentElement;
-    const btn = document.getElementById('themeBtn');
-    const saved = localStorage.getItem('theme');
-    if (saved) {
-      root.setAttribute('data-theme', saved);
-      btn.textContent = saved === 'dark' ? '☀️' : '🌙';
-    } else {
-      btn.textContent = '🌙';
-    }
-
-    btn.addEventListener('click', () => {
-      const current = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-      root.setAttribute('data-theme', current);
-      localStorage.setItem('theme', current);
-      btn.textContent = current === 'dark' ? '☀️' : '🌙';
-    });
   </script>
+  <script src="./assets/js/theme.js"></script>
 </body>
 </html>
+
+

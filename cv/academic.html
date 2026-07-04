@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academic CV - Panthakan Boonsuriyatham</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../assets/css/theme.css">
+    <style>
+        /* Universal font rule */
+        *, button, input, select, textarea {
+            font-family: 'Tinos', serif;
+        }
+        
+        /* CV-specific overrides for light theme default */
+        :root {
+            --cv-bg: #FFFFFF;
+            --cv-text: #1C1C1C;
+            --cv-muted: #4A3B32;
+            --cv-accent: #6a9679;
+            --cv-border: #E6E2DD;
+            --cv-section-bg: #F9F8F4;
+        }
+        
+        body {
+            background: var(--cv-bg);
+            color: var(--cv-text);
+            font-family: 'Tinos', serif;
+            line-height: 1.6;
+            padding: 0;
+            margin: 0;
+            padding-top: 160px;
+        }
+        
+        /* Screen Layout */
+        .cv-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px 180px 20px 20px;
+            position: relative;
+        }
+        
+        .cv-actions {
+            position: fixed;
+            right: 20px;
+            top: 180px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            width: 140px;
+            z-index: 100;
+        }
+        
+        .cv-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s;
+            border: 2px solid var(--cv-accent);
+            cursor: pointer;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+        
+        .cv-btn-primary {
+            background: white;
+            color: var(--cv-accent);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .cv-btn-primary:hover {
+            background: var(--cv-accent);
+            color: white;
+            border-color: var(--cv-accent);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+            transform: translateY(-1px);
+        }
+        
+        .cv-btn-secondary {
+            background: white;
+            color: var(--cv-accent);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .cv-btn-secondary:hover {
+            background: var(--cv-section-bg);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+            transform: translateY(-1px);
+        }
+        
+        .cv-btn-secondary.active {
+            background: var(--cv-accent);
+            color: white;
+            font-weight: 700;
+        }
+        
+        /* CV Content */
+        .cv-content {
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .cv-page {
+            padding: 48px;
+            max-width: 850px;
+            margin: 0 auto;
+        }
+        
+        /* Header */
+        .cv-header {
+            text-align: center;
+            border-bottom: 3px solid var(--cv-accent);
+            padding-bottom: 24px;
+            margin-bottom: 32px;
+            display: none; /* Hide on screen, show on print */
+        }
+        
+        .cv-name {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--cv-text);
+            margin: 0 0 8px 0;
+        }
+        
+        .cv-title {
+            font-size: 1.25rem;
+            color: var(--cv-accent);
+            font-weight: 600;
+            margin: 0 0 16px 0;
+        }
+        
+        .cv-contact {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            font-size: 0.9rem;
+            color: var(--cv-muted);
+        }
+        
+        .cv-contact-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .cv-contact a {
+            color: var(--cv-accent);
+            text-decoration: none;
+        }
+        
+        .cv-contact a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Sections */
+        .cv-section {
+            margin-bottom: 32px;
+            page-break-inside: avoid;
+        }
+        
+        .cv-section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--cv-accent);
+            border-bottom: 2px solid var(--cv-border);
+            padding-bottom: 8px;
+            margin: 0 0 16px 0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .cv-summary {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: var(--cv-muted);
+            margin-bottom: 24px;
+        }
+        
+        /* Experience/Education Items */
+        .cv-item {
+            margin-bottom: 24px;
+            page-break-inside: avoid;
+        }
+        
+        .cv-item-header {
+            margin-bottom: 8px;
+        }
+        
+        .cv-item-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--cv-text);
+            margin: 0;
+        }
+        
+        .cv-item-subtitle {
+            font-size: 0.95rem;
+            color: var(--cv-accent);
+            font-weight: 500;
+            margin: 4px 0;
+        }
+        
+        .cv-item-meta {
+            font-size: 0.85rem;
+            color: var(--cv-muted);
+            font-style: italic;
+        }
+        
+        .cv-item-desc {
+            margin: 8px 0 0 0;
+            padding-left: 0;
+        }
+        
+        .cv-item-desc li {
+            margin-bottom: 4px;
+            color: var(--cv-text);
+        }
+        
+        /* Skills */
+        .cv-skills-group {
+            margin-bottom: 16px;
+        }
+        
+        .cv-skills-title {
+            font-weight: 600;
+            color: var(--cv-text);
+            margin-bottom: 6px;
+            font-size: 0.95rem;
+        }
+        
+        .cv-skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        
+        .cv-skill-tag {
+            background: var(--cv-section-bg);
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            color: var(--cv-text);
+            border: 1px solid var(--cv-border);
+        }
+        
+        /* Certifications */
+        .cv-cert-group {
+            margin-bottom: 16px;
+        }
+        
+        .cv-cert-title {
+            font-weight: 600;
+            color: var(--cv-accent);
+            margin-bottom: 6px;
+        }
+        
+        .cv-cert-list {
+            padding-left: 20px;
+            margin: 0;
+        }
+        
+        .cv-cert-list li {
+            margin-bottom: 4px;
+            font-size: 0.9rem;
+        }
+        
+        /* Language Proficiency */
+        .cv-lang-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+        
+        .cv-lang-name {
+            font-weight: 500;
+            color: var(--cv-text);
+        }
+        
+        .cv-lang-level {
+            color: var(--cv-muted);
+        }
+        
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+                margin: 0;
+                font-family: 'Times New Roman', Times, serif;
+                font-size: 12pt;
+            }
+            
+            .cv-container {
+                max-width: 100%;
+                padding: 0;
+            }
+            
+            .cv-actions {
+                display: none !important;
+            }
+            
+            header {
+                display: none !important;
+            }
+            
+            .cv-header {
+                display: none !important;
+            }
+            
+            .cv-content {
+                box-shadow: none;
+                border-radius: 0;
+            }
+            
+            .cv-page {
+                padding: 0.5in 0.75in;
+                max-width: 100%;
+            }
+            
+            .cv-section {
+                page-break-inside: avoid;
+            }
+            
+            .cv-item {
+                page-break-inside: avoid;
+            }
+            
+            .cv-name {
+                font-size: 2rem;
+            }
+            
+            .cv-title {
+                font-size: 1rem;
+            }
+            
+            .cv-contact {
+                font-size: 0.75rem;
+            }
+            
+            .cv-section-title {
+                font-size: 1.2rem;
+            }
+            
+            a {
+                color: inherit;
+                text-decoration: none;
+            }
+            
+            /* Force page breaks */
+            .page-break-before {
+                page-break-before: always;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .cv-container {
+                padding: 80px 20px 20px 20px;
+            }
+            
+            .cv-actions {
+                position: static;
+                width: 100%;
+                flex-direction: row;
+                justify-content: center;
+                flex-wrap: wrap;
+                margin-bottom: 20px;
+            }
+            
+            .cv-page {
+                padding: 24px;
+            }
+            
+            .cv-name {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+      <div class="brand">
+        <img src="../assets/images/profile_2025.JPG" alt="Panthakan Seenam Boonsuriyatham" class="avatar">
+        <div>
+          <div class="name">Panthakan Seenam Boonsuriyatham</div>
+          <div class="subtitle">AI Researcher at <a href="https://www.fusionsol.com/" target="_blank" rel="noopener">Fusion Solution</a> • Bangkok • Thailand</div>
+          <div class="subtitle">Retrieval Systems | RAG | Knowledge Graphs | LLMs | Machine Learning</div>
+        </div>
+      </div>
+      <div class="header-right">
+        <div class="header-contact">
+          <span class="social-links">
+            <a href="https://www.linkedin.com/in/panthbs/" target="_blank" rel="noopener" aria-label="LinkedIn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+              </svg>
+            </a>
+            <a href="https://github.com/panthbs" target="_blank" rel="noopener" aria-label="GitHub">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+              </svg>
+            </a>
+            <a href="https://orcid.org/0000-0001-9995-3618" target="_blank" rel="noopener" aria-label="ORCID">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 4.378c.525 0 .947.431.947.947s-.422.947-.947.947a.95.95 0 0 1-.947-.947c0-.525.422-.947.947-.947zm-.722 3.038h1.444v10.041H6.647V7.416zm3.562 0h3.9c3.712 0 5.344 2.653 5.344 5.025 0 2.578-2.016 5.016-5.325 5.016h-3.919V7.416zm1.444 1.303v7.444h2.297c2.359 0 3.881-1.303 3.881-3.722 0-2.131-1.481-3.722-3.881-3.722h-2.297z"/>
+              </svg>
+            </a>
+          </span>
+          <a class="btn" href="mailto:panthakan@fusionsol.com">Contact Me</a>
+          <button class="theme-toggle" id="theme-btn" aria-label="Toggle theme">🌙</button>
+        </div>
+        <nav aria-label="Primary">
+          <a href="../">Home</a>
+          <span class="separator">|</span>
+          <a href="../projects/">Projects</a>
+          <span class="separator">|</span>
+          <a href="../certifications/">Certifications</a>
+          <span class="separator">|</span>
+          <a href="../education/">Education</a>
+          <span class="separator">|</span>
+          <a href="../cv/">CV</a>
+        </nav>
+      </div>
+    </header>
+    
+    <div class="cv-container">
+        <div class="cv-actions">
+            <button class="cv-btn cv-btn-primary" onclick="window.print()">
+                Print / PDF
+            </button>
+            <a href="./" class="cv-btn cv-btn-secondary">
+                Professional
+            </a>
+            <a href="./academic.html" class="cv-btn cv-btn-secondary active">
+                Academic
+            </a>
+        </div>
+        
+        <div class="cv-content">
+            <div class="cv-page">
+                <!-- Header -->
+                <header class="cv-header">
+                    <h1 class="cv-name">Panthakan Seenam Boonsuriyatham</h1>
+                    <div class="cv-title">AI Researcher — Retrieval &amp; Knowledge Systems / Ph.D. Candidate</div>
+                    <div class="cv-contact">
+                        <span class="cv-contact-item">📧 <a href="mailto:panthakan@fusionsol.com">panthakan@fusionsol.com</a></span>
+                        <span class="cv-contact-item">📍 Bangkok, Thailand</span>
+                        <span class="cv-contact-item">🔗 <a href="https://panthbs.github.io" target="_blank">panthbs.github.io</a></span>
+                    </div>
+                    <div class="cv-contact" style="margin-top: 8px;">
+                        <span class="cv-contact-item">💼 <a href="https://linkedin.com/in/panthbs" target="_blank">linkedin.com/in/panthbs</a></span>
+                        <span class="cv-contact-item">🐙 <a href="https://github.com/panthbs" target="_blank">github.com/panthbs</a></span>
+                        <span class="cv-contact-item">🔬 <a href="https://orcid.org/0000-0001-9995-3618" target="_blank">ORCID: 0000-0001-9995-3618</a></span>
+                    </div>
+                </header>
+                
+                <!-- Research Interests -->
+                <section class="cv-section">
+                    <h2 class="cv-section-title">Research Interests</h2>
+                    <p class="cv-summary">
+                        Information Retrieval • Knowledge Graphs • Retrieval-Augmented Generation (RAG) • Large Language Models •
+                        Knowledge Management • Semantic Search • Natural Language Processing • Machine Learning •
+                        Statistical Modeling • Recommender Systems • Agricultural AI • Time-Series Analysis
+                    </p>
+                </section>
+                
+                <!-- Professional Summary -->
+                <section class="cv-section">
+                    <h2 class="cv-section-title">Professional Summary</h2>
+                    <p class="cv-summary">
+                        AI Researcher with a strong mathematical and statistical foundation, working at the intersection of knowledge
+                        management, information retrieval, and generative AI. Currently pursuing a Ph.D. in Computer Science (Information Retrieval)
+                        at Chulalongkorn University while maintaining dual research and applied roles at Fusion Solution. Designs knowledge-graph
+                        retrieval frameworks, RAG pipelines, and agentic AI systems, and deploys production ML at scale (1M+ customers, 200+ products).
+                        International education background (University of Glasgow, UK) with two Master's degrees in Statistics and Data Analytics.
+                        Recipient of 10-year competitive government scholarship (DPST, 2014-2024). Silver Award Winner (Runner-up) and Thailand representative at ASEAN Digital
+                        Awards 2026 for AI-driven agricultural disease classification research in Digital Innovation category.
+                    </p>
+                </section>
+                
+                <!-- Education -->
+                <section class="cv-section">
+                    <h2 class="cv-section-title">Education</h2>
+                    
+                    <div class="cv-item">
+                        <div class="cv-item-header">
+                            <h3 class="cv-item-title">Ph.D. in Computer Science</h3>
+                            <div class="cv-item-subtitle">Chulalongkorn University, Bangkok, Thailand</div>
+                            <div class="cv-item-meta">2026 – Present (Expected Completion: 2029)</div>
+                        </div>
+                        <ul class="cv-item-desc">
+                            <li><strong>Research Area:</strong> Information Retrieval</li>
+                            <li><strong>Research Focus:</strong> Information extraction, information retrieval, AI-driven retrieval systems, query understanding, 
+                                semantic search, neural information retrieval</li>
+                            <!-- <li><strong>Advisor:</strong> [To be specified]</li> -->
+                            <li><strong>Relevant Coursework:</strong> TBA </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="cv-item">
+                        <div class="cv-item-header">
+                            <h3 class="cv-item-title">M.Phil. in Statistics</h3>
+                            <div class="cv-item-subtitle">University of Glasgow, Glasgow, United Kingdom</div>
+                            <div class="cv-item-meta">2022 – 2024 • Fully Funded DPST Scholarship</div>
+                        </div>
+                        <ul class="cv-item-desc">
+                            <li><strong>Thesis:</strong> "Changepoint Detection for Net Electricity Demand Modelling in Great Britain"</li>
+                            <li><strong>Thesis Available:</strong> <a href="https://theses.gla.ac.uk/85614/" target="_blank">theses.gla.ac.uk/85614/</a></li>
+                            <li><strong>Research Summary:</strong> Developed and applied advanced statistical changepoint detection methods 
+                                to model net electricity demand patterns in Great Britain. Utilized time-series analysis, segmentation algorithms, 
+                                and predictive modeling to identify structural changes in energy consumption behavior. Contributed to energy 
+                                demand forecasting and infrastructure planning.</li>
+                            <li><strong>Key Techniques:</strong> Bayesian changepoint detection, PELT algorithm, time-series decomposition, 
+                                regression modeling, cross-validation, model selection</li>
+                            <!-- <li><strong>Supervisor:</strong> [School of Mathematics and Statistics]</li> -->
+                        </ul>
+                    </div>
+                    
+                    <div class="cv-item">
+                        <div class="cv-item-header">
+                            <h3 class="cv-item-title">M.Sc. in Data Analytics (Distinction Honours)</h3>
+                            <div class="cv-item-subtitle">University of Glasgow, Glasgow, United Kingdom</div>
+                            <div class="cv-item-meta">2021 – 2022 • Fully Funded DPST Scholarship</div>
+                        </div>
+                        <ul class="cv-item-desc">
+                            <li><strong>Dissertation:</strong> "Analysis of Course and Degree Results in a University Programme"</li>
+                            <li><strong>Research Summary:</strong> Conducted comprehensive statistical analysis of student performance data 
+                                to identify patterns in academic outcomes. Applied machine learning techniques for predictive modeling of 
+                                student success. Provided actionable insights for educational program improvement.</li>
+                            <li><strong>Key Techniques:</strong> Exploratory data analysis, regression analysis, classification models, 
+                                hypothesis testing, data visualization, statistical inference</li>
+                            <li><strong>Relevant Coursework:</strong> Machine Learning, Statistical Modeling, Big Data Analytics, 
+                                Data Mining, Business Intelligence, Data Visualization, Programming for Data Analysis</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="cv-item">
+                        <div class="cv-item-header">
+                            <h3 class="cv-item-title">Graduate Courseworks in Mathematics</h3>
+                            <div class="cv-item-subtitle">Silpakorn University, Nakhon Pathom, Thailand</div>
+                            <div class="cv-item-meta">2020 – 2021 • Fully Funded DPST Scholarship</div>
+                        </div>
+                        <ul class="cv-item-desc">
+                            <li><strong>Status:</strong> Completed all required graduate-level coursework (equivalent to half the M.Sc. 
+                                degree requirements). Withdrew in good standing prior to thesis phase to accept university transfer for 
+                                study abroad opportunity at University of Glasgow</li>
+                            <li><strong>Coursework:</strong> Advanced Abstract Algebra, Real Analysis, Complex Analysis, Functional Analysis, 
+                                Topology, Advanced Linear Algebra, Mathematical Statistics</li>
+                            <li><strong>Achievement:</strong> High academic standing with strong performance across all mathematics courses</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="cv-item">
+                        <div class="cv-item-header">
+                            <h3 class="cv-item-title">B.Sc. in Mathematics (First Class Honours)</h3>
+                            <div class="cv-item-subtitle">Silpakorn University, Nakhon Pathom, Thailand</div>
+                            <div class="cv-item-meta">2016 – 2019 • Completed in 3.5 years • Outstanding Student Scholarship • Fully Funded DPST Scholarship</div>
+                        </div>
+                        <ul class="cv-item-desc">
+                            <li><strong>Undergraduate Research Project:</strong> "Some Properties of Prime-Cubed Cyclotomic Cosets in Cyclic Group ℤₘ"</li>
+                            <li><strong>Project Summary:</strong> Pure mathematics research in abstract algebra and number theory, 
+                                investigating structural properties of cyclotomic cosets in cyclic groups under prime-cubed moduli. 
+                                Proved new theorems on coset cardinality and distribution patterns.</li>
+                            <li><strong>Research Areas:</strong> Abstract Algebra, Number Theory, Cyclic Groups, Cyclotomic Polynomials</li>
+                            <li><strong>Awards:</strong>
+                                <ul style="margin-top: 4px;">
+                                    <li>Best Undergraduate Project Presentation Award in Mathematics, DPST Conference (2020)</li>
+                                    <li>DPST Short Research Award, University of California, San Diego (2019)</li>
+                                    <li>Highest GPA Awards (All years: 1st, 2nd, 3rd, 4th year)</li>
+                                </ul>
+                            </li>
+                            <li><strong>Teaching Experience:</strong> Precalculus Tutor for First-Year Science Students (2017–2019)</li>
+                        </ul>
+                    </div>
+                </section>
+                
+                <!-- Page Break -->
+                <div class="page-break-before"></div>
+                
+                <!-- Work Experience -->
+                <section class="cv-section">
+                    <h2 class="cv-section-title">Professional Experience</h2>
+                    
+                    <div class="cv-item">
+                        <div class="cv-item-header">
+                            <h3 class="cv-item-title">AI Researcher</h3>
+                            <div class="cv-item-subtitle">Fusion Solution, Bangkok, Thailand</div>
+                            <div class="cv-item-meta">August 2025 – Present</div>
+                        </div>
+                        <ul class="cv-item-desc">
+                            <li>Conduct advanced research in AI techniques for R&D team with focus on information retrieval, 
+                                recommendation systems, and agricultural AI applications</li>
+                            <li>Lead research collaboration with Kasetsart University and National Corn and Sorghum Research Center 
+                                Thailand on disease classification systems for agricultural crops</li>
+                            <li>Develop and implement state-of-the-art deep learning algorithms for production deployment in 
+                                retail and agricultural domains</li>
+                            <li>Research neural information retrieval techniques and query understanding systems for e-commerce applications</li>
+                            <li>Publish research findings and present at academic conferences and industry forums</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="cv-item">
+                        <div class="cv-item-header">
+                            <h3 class="cv-item-title">Data Scientist</h3>
+                            <div class="cv-item-subtitle">Fusion Solution, Bangkok, Thailand</div>
+                            <div class="cv-item-meta">May 2025 – Present</div>
+                        </div>
+                        <ul class="cv-item-desc">
+                            <li>Design and deploy end-to-end machine learning systems for retail business optimization across Thailand</li>
+                            <li><strong>Customer Segmentation System:</strong> Built production clustering pipeline serving 1M+ customers 
+                                using K-means, hierarchical clustering, and DBSCAN algorithms. Implemented RFM analysis and behavioral 
+                                segmentation for targeted marketing campaigns</li>
+                            <li><strong>Product Recommendation Engine:</strong> Developed collaborative filtering and deep learning-based 
+                                recommender system covering 200+ products. Utilized matrix factorization, association rule mining, and 
+                                neural collaborative filtering techniques</li>
+                            <li><strong>Search and Retrieval System:</strong> Architected NLP-based search engine with query preprocessing, 
+                                semantic understanding, and query routing capabilities for 300+ product catalog</li>
+                            <li><strong>Demand Forecasting:</strong> Built time-series forecasting models for inventory optimization and 
+                                supply chain management across multiple regions</li>
+                            <li><strong>Sentiment Analysis:</strong> Deployed sentiment classification models for customer feedback analysis 
+                                and brand monitoring</li>
+                            <li>Construct data pipelines using Azure ecosystem (Azure ML, Azure AI Studio, Microsoft Fabric), SQL databases, 
+                                and Python frameworks (pandas, PySpark, scikit-learn, TensorFlow, PyTorch)</li>
+                            <li>Collaborate with cross-functional teams to translate business requirements into technical ML solutions</li>
+                        </ul>
+                    </div>
+                </section>
+                
+                <!-- Research Projects -->
+                <section class="cv-section">
+                    <h2 class="cv-section-title">Research Projects & Publications</h2>
+                    
+                    <div class="cv-item">
+                        <div class="cv-item-header">
+                            <h3 class="cv-item-title">Intelligent AgriDiagnose: AI-Powered Agricultural Disease Diagnosis System</h3>
+                            <div class="cv-item-meta">Kasetsart University & National Corn Research Center Thailand • 2025–Present</div>
+                        </div>
+                        <ul class="cv-item-desc">
+                            <li><strong>Recognition:</strong> Silver Award Winner (Runner-up) at ASEAN Digital Awards 2026 (Digital Innovation Category, Hanoi, Vietnam, January 15, 2026)</li>
+                            <li><strong>Thailand Representative:</strong> Selected to represent Thailand for ASEAN region in Digital Innovation sector at ASEAN Digital Awards 2026</li>
+                            <li><strong>Innovation:</strong> First-of-its-kind agricultural AI system integrated into messaging platforms (Line, WhatsApp, Facebook Messenger) requiring zero app downloads, democratizing access to advanced technology</li>
+                            <li><strong>Technology:</strong> ResNet-based deep learning architecture with transfer learning, data augmentation, class balancing, and ensemble methods for robust disease classification</li>
+                            <li><strong>Impact:</strong> Empowers farmers with real-time, scientifically validated disease diagnosis through familiar platforms, reducing crop loss and improving food security across Southeast Asia</li>
+                            <li><strong>Validation:</strong> Multi-institutional research partnership with Thailand's leading agricultural research institutions ensuring scientific rigor and practical applicability</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="cv-item">
+                        <div class="cv-item-header">
+                            <h3 class="cv-item-title">Changepoint Detection for Energy Demand Modeling</h3>
+                            <div class="cv-item-meta">University of Glasgow, School of Mathematics and Statistics • 2022–2024</div>
+                        </div>
+                        <ul class="cv-item-desc">
+                            <li><strong>Publication:</strong> M.Phil. Thesis available at <a href="https://theses.gla.ac.uk/85614/" target="_blank">theses.gla.ac.uk/85614/</a></li>
+                            <li><strong>Research Objective:</strong> Apply advanced statistical changepoint detection methods to model structural 
+                                changes in net electricity demand patterns in Great Britain</li>
+                            <li><strong>Methodology:</strong> Implemented Bayesian changepoint detection, PELT algorithm, and multiple changepoint 
+                                methods. Conducted time-series decomposition, trend analysis, and seasonal adjustment</li>
+                            <li><strong>Results:</strong> Successfully identified significant changepoints in electricity demand corresponding 
+                                to policy changes, economic events, and technological adoption patterns</li>
+                            <li><strong>Applications:</strong> Energy demand forecasting, grid infrastructure planning, policy impact assessment</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="cv-item">
+                        <div class="cv-item-header">
+                            <h3 class="cv-item-title">Educational Data Analysis and Predictive Modeling</h3>
+                            <div class="cv-item-meta">University of Glasgow, School of Computing Science • 2021–2022</div>
+                        </div>
+                        <ul class="cv-item-desc">
+                            <li><strong>Publication:</strong> M.Sc. Dissertation: "Analysis of Course and Degree Results in a University Programme"</li>
+                            <li><strong>Research Objective:</strong> Analyze student performance patterns and develop predictive models for 
+                                academic success to inform educational program design</li>
+                            <li><strong>Methodology:</strong> Applied statistical analysis, regression modeling, classification algorithms 
+                                (logistic regression, decision trees, random forests), and data visualization techniques</li>
+                            <li><strong>Results:</strong> Identified key predictors of student success and provided evidence-based recommendations 
+                                for program improvement</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="cv-item">
+                        <div class="cv-item-header">
+                            <h3 class="cv-item-title">Cyclotomic Cosets in Abstract Algebra</h3>
+                            <div class="cv-item-meta">Silpakorn University, Department of Mathematics • 2018–2019</div>
+                        </div>
+                        <ul class="cv-item-desc">
+                            <li><strong>Publication:</strong> Undergraduate Research Project: "Some Properties of Prime-Cubed Cyclotomic 
+                                Cosets in Cyclic Group ℤₘ"</li>
+                            <li><strong>Award:</strong> Best Undergraduate Project Presentation Award, DPST Conference (2020)</li>
+                            <li><strong>Research Objective:</strong> Investigate structural properties and cardinality patterns of cyclotomic 
+                                cosets in cyclic groups under prime-cubed moduli</li>
+                            <li><strong>Methodology:</strong> Pure mathematics research using algebraic proof techniques, computational 
+                                verification, and pattern analysis</li>
+                            <li><strong>Results:</strong> Proved new theorems on coset distribution and cardinality formulas for specific 
+                                classes of prime-cubed moduli</li>
+                        </ul>
+                    </div>
+                </section>
+                
+                <!-- Page Break -->
+                <div class="page-break-before"></div>
+                
+                <!-- Technical Skills -->
+                <section class="cv-section">
+                    <h2 class="cv-section-title">Technical Skills</h2>
+                    
+                    <div class="cv-skills-group">
+                        <div class="cv-skills-title">Programming Languages</div>
+                        <div class="cv-skills-list">
+                            <span class="cv-skill-tag">Python (Advanced)</span>
+                            <span class="cv-skill-tag">R (Advanced)</span>
+                            <span class="cv-skill-tag">SQL (Advanced)</span>
+                            <span class="cv-skill-tag">C/C++ (Intermediate)</span>
+                            <span class="cv-skill-tag">MATLAB (Intermediate)</span>
+                        </div>
+                    </div>
+                    
+                    <div class="cv-skills-group">
+                        <div class="cv-skills-title">Machine Learning & Deep Learning</div>
+                        <div class="cv-skills-list">
+                            <span class="cv-skill-tag">TensorFlow</span>
+                            <span class="cv-skill-tag">PyTorch</span>
+                            <span class="cv-skill-tag">Keras</span>
+                            <span class="cv-skill-tag">scikit-learn</span>
+                            <span class="cv-skill-tag">XGBoost</span>
+                            <span class="cv-skill-tag">LightGBM</span>
+                            <span class="cv-skill-tag">Hugging Face Transformers</span>
+                        </div>
+                    </div>
+                    
+                    <div class="cv-skills-group">
+                        <div class="cv-skills-title">Data Science & Analytics</div>
+                        <div class="cv-skills-list">
+                            <span class="cv-skill-tag">pandas</span>
+                            <span class="cv-skill-tag">NumPy</span>
+                            <span class="cv-skill-tag">SciPy</span>
+                            <span class="cv-skill-tag">PySpark</span>
+                            <span class="cv-skill-tag">statsmodels</span>
+                            <span class="cv-skill-tag">Seaborn</span>
+                            <span class="cv-skill-tag">Matplotlib</span>
+                            <span class="cv-skill-tag">Plotly</span>
+                            <span class="cv-skill-tag">ggplot2</span>
+                        </div>
+                    </div>
+                    
+                    <div class="cv-skills-group">
+                        <div class="cv-skills-title">Cloud & Data Platforms</div>
+                        <div class="cv-skills-list">
+                            <span class="cv-skill-tag">Microsoft Azure</span>
+                            <span class="cv-skill-tag">Azure Machine Learning</span>
+                            <span class="cv-skill-tag">Azure AI Studio</span>
+                            <span class="cv-skill-tag">Microsoft Fabric</span>
+                            <span class="cv-skill-tag">Azure Databricks</span>
+                            <span class="cv-skill-tag">Google Cloud Platform</span>
+                            <span class="cv-skill-tag">Vertex AI</span>
+                            <span class="cv-skill-tag">BigQuery</span>
+                        </div>
+                    </div>
+                    
+                    <div class="cv-skills-group">
+                        <div class="cv-skills-title">Specialized ML Domains</div>
+                        <div class="cv-skills-list">
+                            <span class="cv-skill-tag">Natural Language Processing</span>
+                            <span class="cv-skill-tag">Computer Vision</span>
+                            <span class="cv-skill-tag">Information Retrieval</span>
+                            <span class="cv-skill-tag">Recommender Systems</span>
+                            <span class="cv-skill-tag">Time-Series Analysis</span>
+                            <span class="cv-skill-tag">Statistical Modeling</span>
+                            <span class="cv-skill-tag">Bayesian Methods</span>
+                            <span class="cv-skill-tag">A/B Testing</span>
+                        </div>
+                    </div>
+                    
+                    <div class="cv-skills-group">
+                        <div class="cv-skills-title">Tools & Technologies</div>
+                        <div class="cv-skills-list">
+                            <span class="cv-skill-tag">Git/GitHub</span>
+                            <span class="cv-skill-tag">Docker</span>
+                            <span class="cv-skill-tag">Jupyter</span>
+                            <span class="cv-skill-tag">VS Code</span>
+                            <span class="cv-skill-tag">Power BI</span>
+                            <span class="cv-skill-tag">Tableau</span>
+                            <span class="cv-skill-tag">MLflow</span>
+                            <span class="cv-skill-tag">Apache Spark</span>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Professional Certifications -->
+                <section class="cv-section">
+                    <h2 class="cv-section-title">Professional Certifications (22 Total)</h2>
+                    
+                    <div class="cv-cert-group">
+                        <div class="cv-cert-title">Microsoft Certified</div>
+                        <ul class="cv-cert-list">
+                            <li>Azure AI Engineer Associate (AI-102) – August 2025</li>
+                            <li>Azure Data Scientist Associate (DP-100) – May 2025</li>
+                            <li>Fabric Analytics Engineer Associate (DP-600) – September 2025</li>                            
+                            <li>Fabric Data Engineer Associate (DP-700) – June 2025</li>
+                            <li>Azure AI Fundamentals (AI-900) – October 2025</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="cv-cert-group">
+                        <div class="cv-cert-title">Google Cloud Certified</div>
+                        <ul class="cv-cert-list">
+                            <li>Professional Machine Learning Engineer – November 2025</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="cv-cert-group">
+                        <div class="cv-cert-title">Specialized Certifications & Training</div>
+                        <ul class="cv-cert-list">
+                            <li>Databricks Academy Accreditation - Generative AI Fundamentals (January 2026)</li>
+                            <li>Microsoft AI Discovery Cards – Train The Trainer (December 2025)</li>
+                            <li>Microsoft Applied Skills: Build Natural Language Processing Solution (September 2025)</li>
+                            <li>Microsoft Applied Skills: Real-Time Intelligence with Fabric (June 2025)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="cv-cert-group">
+                        <div class="cv-cert-title">Google Cloud Skills & Labs (7 Courses)</div>
+                        <ul class="cv-cert-list">
+                            <li>Analyze and Visualize Looker Data</li>
+                            <li>Implement Cloud Security Fundamentals</li>
+                            <li>Derive Insights from BigQuery Data</li>
+                            <li>Engineer Data for Predictive Modeling with BigQuery ML</li>
+                            <li>Create ML Models with BigQuery ML</li>
+                            <li>Prepare Data for ML APIs</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="cv-cert-group">
+                        <div class="cv-cert-title">Business & Finance Fundamentals (6 Courses - CFI)</div>
+                        <ul class="cv-cert-list">
+                            <li>Professional Ethics • Excel Fundamentals • Accounting Fundamentals</li>
+                            <li>3-Statement Modeling • Capital Markets • Excel Formulas for Finance</li>
+                        </ul>
+                    </div>
+                </section>
+                
+                <!-- Awards & Honors -->
+                <section class="cv-section">
+                    <h2 class="cv-section-title">Awards & Recognition</h2>
+                    <ul class="cv-item-desc">
+                        <li><strong>Silver Award (Runner-up)</strong> – ASEAN Digital Awards 2026, Digital Innovation Category, Hanoi, Vietnam (January 15, 2026)
+                            <br><em>Recognized for Intelligent AgriDiagnose: AI-powered agricultural disease diagnosis system integrated into messaging platforms, empowering farmers across Southeast Asia</em></li>
+                        <li><strong>Thailand Representative</strong> – ASEAN Digital Awards 2026, Digital Innovation Category (2026)
+                            <br><em>Selected to represent Thailand at regional level for AI-driven disease classification research</em></li>
+                        <li><strong>Best Undergraduate Project Presentation Award in Mathematics</strong> – DPST National Conference (2020)
+                            <br><em>Recognized for research on cyclotomic cosets in abstract algebra</em></li>
+                        <li><strong>DPST Short Research Award</strong> – University of California, San Diego (2019)
+                            <br><em>Competitive research fellowship for international research experience in mathematics</em></li>
+                        <li><strong>Highest GPA Awards</strong> – All Undergraduate Years (2017, 2018, 2019, 2020)
+                            <br><em>Top academic performance awards for 1st, 2nd, 3rd, and 4th year of B.Sc. programme</em></li>
+                        <li><strong>10-Year Scholarship Funding</strong> – Development and Promotion of Science and Technology Talents Project (DPST) (2014–2024)
+                            <br><em>Fully funded competitive government scholarship covering secondary education through Master's degrees</em></li>
+                    </ul>
+                </section>
+                
+                <!-- Scholarships & Funding -->
+                <section class="cv-section">
+                    <h2 class="cv-section-title">Scholarships & Funding</h2>
+                    <ul class="cv-item-desc">
+                        <li><strong>DPST Scholarship for Higher-Level Study Abroad</strong> (2020–2024)
+                            <br>Full funding for M.Sc. Data Analytics and M.Phil. Statistics at University of Glasgow, UK
+                            <br>Coverage: Tuition, living expenses, research costs, international travel</li>
+                        <li><strong>Development and Promotion of Science and Technology Talents Project (DPST) Government Scholarship</strong> (2014–2024)
+                            <br>Prestigious 10-year competitive scholarship for science and technology education
+                            <br>Full funding from secondary school through Master's degrees</li>
+                        <li><strong>Outstanding Student Scholarship</strong>, Silpakorn University (2016–2020)
+                            <br>Merit-based scholarship for exceptional academic performance during undergraduate studies</li>
+                    </ul>
+                </section>
+                
+                <!-- Teaching Experience -->
+                <section class="cv-section">
+                    <h2 class="cv-section-title">Teaching & Mentoring</h2>
+                    <div class="cv-item">
+                        <div class="cv-item-header">
+                            <h3 class="cv-item-title">Precalculus Tutor for First-Year Science Students</h3>
+                            <div class="cv-item-subtitle">Silpakorn University, Department of Mathematics</div>
+                            <div class="cv-item-meta">2017 – 2019</div>
+                        </div>
+                        <ul class="cv-item-desc">
+                            <li>Provided individual and group tutoring sessions for first-year science students in precalculus topics</li>
+                            <li>Developed supplementary learning materials and practice problems to support student learning</li>
+                            <li>Assisted in exam preparation and concept clarification for foundational mathematics</li>
+                            <li>Received Teaching Assistant Certificate for outstanding service</li>
+                        </ul>
+                    </div>
+                </section>
+                
+                <!-- Language Proficiency -->
+                <section class="cv-section">
+                    <h2 class="cv-section-title">Language Proficiency</h2>
+                    <div class="cv-lang-item">
+                        <span class="cv-lang-name">Thai</span>
+                        <span class="cv-lang-level">Native Speaker</span>
+                    </div>
+                    <div class="cv-lang-item">
+                        <span class="cv-lang-name">English</span>
+                        <span class="cv-lang-level">Professional Working Proficiency (TOEIC 965/990)</span>
+                    </div>
+                    <p style="margin-top: 8px; font-size: 0.9rem; color: var(--cv-muted);">
+                        <em>Completed <b> two Master's degrees </b> at University of Glasgow (UK) with full English-medium instruction. 
+                        Extensive experience in academic writing, research presentation, and technical communication in English.</em>
+                    </p>
+                </section>
+                
+                <!-- Professional Memberships -->
+                <section class="cv-section">
+                    <h2 class="cv-section-title">Professional Development</h2>
+                    <ul class="cv-item-desc">
+                        <li>Active participation in AI/ML research community and industry conferences</li>
+                        <li>Continuous professional certification in cloud computing and machine learning (22 certifications acquired 2025-2026)</li>
+                        <li>Collaboration with academic institutions (Chulalongkorn University, Kasetsart University, University of Glasgow)</li>
+                        <li>Industry partnerships in retail analytics and agricultural AI applications</li>
+                    </ul>
+                </section>
+                
+                <!-- References -->
+                <section class="cv-section">
+                    <h2 class="cv-section-title">References</h2>
+                    <p style="margin: 0; color: var(--cv-muted); font-style: italic;">
+                        Academic and professional references available upon request
+                    </p>
+                </section>
+            </div>
+        </div>
+    </div>
+    
+    <script src="../assets/js/theme.js"></script>
+</body>
+</html>

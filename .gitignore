@@ -1,0 +1,30 @@
+# ── Private academic records — never publish to public GitHub Pages ──
+# GitHub Pages serves everything committed publicly, and git history is
+# permanent. Keep personal record scans out of the repo entirely.
+
+# Language-test score scans (also unreferenced by any page)
+/education/score_toefl.png
+/education/score_toeic.png
+
+# Full, private version of the education page (kept local only)
+/education/index.private.html
+
+# Ignore everything under education/documents by default …
+/education/documents/*
+# … but descend into the two public sub-folders …
+!/education/documents/certificates/
+!/education/documents/materials/
+# … within certificates, ignore all (incl. the high-res originals/ backup)
+#     then re-allow only the two downsized degree certificates …
+/education/documents/certificates/*
+!/education/documents/certificates/cert_bsc.png
+!/education/documents/certificates/cert_msc.png
+# … within materials, ignore all then re-allow the PDFs.
+/education/documents/materials/*
+!/education/documents/materials/*.pdf
+
+# ── Private client/customer project log — never publish ──
+# Full internal version WITH organization names. Keep local only; git history
+# is permanent and the file would be fetchable as raw JSON. The published
+# cv/projects-log.json is a redacted copy (title/date/type, no organizations).
+/cv/projects-log.private.json

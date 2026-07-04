@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - Panthakan Boonsuriyatham</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&family=Trirong:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    
+    <link rel="stylesheet" href="../assets/css/theme.css">
+    <style>
+        /* Universal font rule - Tinos for English, Trirong for Thai */
+        *, button, input, select, textarea {
+            font-family: 'Tinos', 'Trirong', serif;
+        }
+        
+        /* CV-specific overrides for light theme default */
+        :root {
+            --cv-bg: #FFFFFF;
+            --cv-text: #1C1C1C;
+            --cv-muted: #4A3B32;
+            --cv-accent: #6a9679;
+            --cv-border: #E6E2DD;
+            --cv-section-bg: #F9F8F4;
+        }
+        
+        body {
+            background: var(--cv-bg);
+            color: var(--cv-text);
+            font-family: 'Tinos', 'Trirong', serif;
+            line-height: 1.6;
+            padding: 0;
+            margin: 0;
+            padding-top: 160px;
+        }
+        
+        /* Screen Layout */
+        .cv-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px 180px 20px 20px;
+            position: relative;
+        }
+        
+        .cv-actions {
+            position: fixed;
+            right: 20px;
+            top: 180px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            width: 140px;
+            z-index: 100;
+        }
+        
+        .cv-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s;
+            border: 2px solid var(--cv-accent);
+            cursor: pointer;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+        
+        .cv-btn-primary {
+            background: white;
+            color: var(--cv-accent);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .cv-btn-primary:hover {
+            background: var(--cv-accent);
+            color: white;
+            border-color: var(--cv-accent);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+            transform: translateY(-1px);
+        }
+        
+        .cv-btn-secondary {
+            background: white;
+            color: var(--cv-accent);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .cv-btn-secondary:hover {
+            background: var(--cv-section-bg);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+            transform: translateY(-1px);
+        }
+        
+        .cv-btn-secondary.active {
+            background: var(--cv-accent);
+            color: white;
+            font-weight: 700;
+        }
+        
+        /* CV Content */
+        .cv-content {
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        @media print {
+            .cv-content {
+                box-shadow: none !important;
+                border-radius: 0 !important;
+            }
+        }
+        
+        .cv-page {
+            padding: 48px;
+            max-width: 850px;
+            margin: 0 auto;
+        }
+        
+        /* Header */
+        .cv-print-header {
+            display: none; /* Hidden on screen */
+        }
+        
+        .cv-header {
+            text-align: center;
+            border-bottom: 3px solid var(--cv-accent);
+            padding-bottom: 24px;
+            margin-bottom: 32px;
+            display: none; /* Hide on screen, show on print */
+        }
+        
+        .cv-name {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--cv-text);
+            margin: 0 0 8px 0;
+        }
+        
+        .cv-title {
+            font-size: 1.25rem;
+            color: var(--cv-accent);
+            font-weight: 600;
+            margin: 0 0 16px 0;
+        }
+        
+        .cv-contact {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            font-size: 0.9rem;
+            color: var(--cv-muted);
+        }
+        
+        .cv-contact-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .cv-contact a {
+            color: var(--cv-accent);
+            text-decoration: none;
+        }
+        
+        .cv-contact a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Sections */
+        .cv-section {
+            margin-bottom: 32px;
+            page-break-inside: avoid;
+        }
+        
+        .cv-section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--cv-accent);
+            border-bottom: 2px solid var(--cv-border);
+            padding-bottom: 8px;
+            margin: 0 0 16px 0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .cv-summary {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: var(--cv-muted);
+            margin-bottom: 24px;
+        }
+        
+        /* Two-column layout */
+        .cv-two-col {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 32px;
+        }
+        
+        .cv-sidebar {
+            padding-right: 24px;
+            border-right: 2px solid var(--cv-border);
+        }
+        
+        /* Experience/Education Items */
+        .cv-item {
+            margin-bottom: 24px;
+            page-break-inside: avoid;
+        }
+        
+        .cv-item-header {
+            margin-bottom: 8px;
+        }
+        
+        .cv-item-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--cv-text);
+            margin: 0;
+        }
+        
+        .cv-item-subtitle {
+            font-size: 0.95rem;
+            color: var(--cv-accent);
+            font-weight: 500;
+            margin: 4px 0;
+        }
+        
+        .cv-item-meta {
+            font-size: 0.85rem;
+            color: var(--cv-muted);
+            font-style: italic;
+        }
+
+        
+        .cv-item-degreeaward {
+            font-size: 0.85rem;
+            color: var(--cv-muted);
+            font-style: bold;
+        }
+
+        .cv-item-gpa {
+            font-size: 0.85rem;
+            color: var(--cv-muted);
+            font-style: italic;
+        }
+        
+        .cv-item-desc {
+            margin: 8px 0 0 0;
+            padding-left: 0;
+        }
+        
+        .cv-item-desc li {
+            margin-bottom: 4px;
+            color: var(--cv-text);
+        }
+        
+        /* Skills */
+        .cv-skills-group {
+            margin-bottom: 16px;
+        }
+        
+        .cv-skills-title {
+            font-weight: 600;
+            color: var(--cv-text);
+            margin-bottom: 6px;
+            font-size: 0.95rem;
+        }
+        
+        .cv-skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        
+        .cv-skill-tag {
+            background: var(--cv-section-bg);
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            color: var(--cv-text);
+            border: 1px solid var(--cv-border);
+        }
+        
+        /* Certifications */
+        .cv-cert-group {
+            margin-bottom: 16px;
+        }
+        
+        .cv-cert-title {
+            font-weight: 600;
+            color: var(--cv-accent);
+            margin-bottom: 6px;
+        }
+        
+        .cv-cert-list {
+            padding-left: 20px;
+            margin: 0;
+        }
+        
+        .cv-cert-list li {
+            margin-bottom: 4px;
+            font-size: 0.9rem;
+        }
+        
+        /* Language Proficiency */
+        .cv-lang-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+        
+        .cv-lang-name {
+            font-weight: 500;
+            color: var(--cv-text);
+        }
+        
+        .cv-lang-level {
+            color: var(--cv-muted);
+        }
+        
+        /* Previous Projects */
+        .projects-filter {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .projects-filter label {
+            font-weight: 600;
+            color: var(--cv-text);
+        }
+        
+        .projects-filter select {
+            padding: 6px 12px;
+            border: 1px solid var(--cv-border);
+            border-radius: 4px;
+            background: white;
+            color: var(--cv-text);
+            font-family: 'Tinos', serif;
+            font-size: 0.9rem;
+        }
+        
+        .previous-projects-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .previous-projects-list li {
+            margin-bottom: 12px;
+            padding-left: 0;
+            color: var(--cv-text);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .project-date {
+            font-weight: 600;
+            color: var(--cv-accent);
+            display: inline-block;
+            min-width: 100px;
+        }
+        
+        .project-title {
+            font-weight: 500;
+        }
+        
+        .project-org {
+            color: var(--cv-muted);
+            font-style: italic;
+        }
+        
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+                margin: 0;
+                font-family: 'Times New Roman', Times, serif;
+                font-size: 11pt;
+            }
+            
+            .cv-container {
+                max-width: 100%;
+                padding: 0;
+            }
+            
+            .cv-actions {
+                display: none !important;
+            }
+            
+            body > header {
+                display: none !important;
+            }
+            
+            .cv-print-header {
+                display: block !important;
+                text-align: center;
+                border-bottom: 2px solid #333;
+                padding-bottom: 16px;
+                margin-bottom: 20px;
+            }
+            
+            .cv-print-header .cv-name {
+                font-size: 1.75rem;
+                font-weight: 700;
+                margin: 0 0 8px 0;
+                color: #000;
+            }
+            
+            .cv-print-header .cv-title {
+                font-size: 1rem;
+                margin: 0 0 12px 0;
+                color: #333;
+            }
+            
+            .cv-print-header .cv-contact {
+                display: flex;
+                justify-content: center;
+                gap: 12px;
+                flex-wrap: wrap;
+                font-size: 0.75rem;
+                color: #333;
+            }
+            
+            .cv-print-header .cv-contact-item {
+                display: inline;
+            }
+            
+            .cv-header {
+                display: none !important;
+            }
+            
+            header.cv-header {
+                display: none !important;
+            }
+            
+            .cv-name {
+                font-size: 2rem;
+                display: block !important;
+            }
+            
+            .cv-title {
+                font-size: 1rem;
+                display: block !important;
+            }
+            
+            .cv-contact {
+                font-size: 0.75rem;
+                display: flex !important;
+            }
+            
+            .cv-section-title {
+                font-size: 1rem;
+            }
+            
+            h2, h2.cv-section-title {
+                font-size: 1rem !important;
+            }
+            
+            .cv-summary {
+                font-size: 0.9rem !important;
+                line-height: 1.5 !important;
+            }
+            
+            .cv-skill-tag {
+                background: none !important;
+                padding: 0 !important;
+                border: none !important;
+                border-radius: 0 !important;
+                display: inline !important;
+                font-size: 0.85rem !important;
+            }
+            
+            .cv-skill-tag::after {
+                content: ", ";
+            }
+            
+            .cv-skill-tag:last-child::after {
+                content: "";
+            }
+            
+            .cv-skills-list {
+                display: block !important;
+            }
+            
+            .projects-filter {
+                display: none !important;
+            }
+            
+            a {
+                color: inherit;
+                text-decoration: none;
+            }
+            
+            /* Force page breaks */
+            .page-break-before {
+                page-break-before: always;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .cv-container {
+                padding: 80px 20px 20px 20px;
+            }
+            
+            .cv-actions {
+                position: static;
+                width: 100%;
+                flex-direction: row;
+                justify-content: center;
+                flex-wrap: wrap;
+                margin-bottom: 20px;
+            }
+            
+            .cv-page {
+                padding: 24px;
+            }
+            
+            .cv-name {
+                font-size: 1.8rem;
+            }
+            
+            .cv-two-col {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            
+            .cv-sidebar {
+                border-right: none;
+                border-bottom: 2px solid var(--cv-border);
+                padding-right: 0;
+                padding-bottom: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+      <div class="brand">
+        <img src="../assets/images/profile_2025.JPG" alt="Panthakan Seenam Boonsuriyatham" class="avatar">
+        <div>
+          <div class="name">Panthakan Seenam Boonsuriyatham</div>
+          <div class="subtitle">AI Researcher at <a href="https://www.fusionsol.com/" target="_blank" rel="noopener">Fusion Solution</a> • Bangkok • Thailand</div>
+          <div class="subtitle">Retrieval Systems | RAG | Knowledge Graphs | LLMs | Machine Learning</div>
+        </div>
+      </div>
+      <div class="header-right">
+        <div class="header-contact">
+          <span class="social-links">
+            <a href="https://www.linkedin.com/in/panthbs/" target="_blank" rel="noopener" aria-label="LinkedIn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+              </svg>
+            </a>
+            <a href="https://github.com/panthbs" target="_blank" rel="noopener" aria-label="GitHub">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+              </svg>
+            </a>
+            <a href="https://orcid.org/0000-0001-9995-3618" target="_blank" rel="noopener" aria-label="ORCID">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 4.378c.525 0 .947.431.947.947s-.422.947-.947.947a.95.95 0 0 1-.947-.947c0-.525.422-.947.947-.947zm-.722 3.038h1.444v10.041H6.647V7.416zm3.562 0h3.9c3.712 0 5.344 2.653 5.344 5.025 0 2.578-2.016 5.016-5.325 5.016h-3.919V7.416zm1.444 1.303v7.444h2.297c2.359 0 3.881-1.303 3.881-3.722 0-2.131-1.481-3.722-3.881-3.722h-2.297z"/>
+              </svg>
+            </a>
+          </span>
+          <a class="btn" href="mailto:panthakan@fusionsol.com">Contact Me</a>
+          <button class="theme-toggle" id="theme-btn" aria-label="Toggle theme">🌙</button>
+        </div>
+        <nav aria-label="Primary">
+          <a href="../">Home</a>
+          <span class="separator">|</span>
+          <a href="../projects/">Projects</a>
+          <span class="separator">|</span>
+          <a href="../certifications/">Certifications</a>
+          <span class="separator">|</span>
+          <a href="../education/">Education</a>
+          <span class="separator">|</span>
+          <a href="./">CV</a>
+        </nav>
+      </div>
+    </header>
+    
+    <div class="cv-container">
+        <div class="cv-actions">
+            <button class="cv-btn cv-btn-primary" onclick="window.print()">
+                Print / PDF
+            </button>
+            <a href="./" class="cv-btn cv-btn-secondary active">
+                Professional
+            </a>
+            <a href="./academic.html" class="cv-btn cv-btn-secondary">
+                Academic
+            </a>
+        </div>
+        
+        <div class="cv-content">
+            <div class="cv-page">
+                <!-- Print-only Header -->
+                <div class="cv-print-header">
+                    <h1 class="cv-name">Panthakan Boonsuriyatham</h1>
+                    <div class="cv-title">AI Researcher — Retrieval &amp; Knowledge Systems</div>
+                    <div class="cv-contact">
+                        <span class="cv-contact-item"> • panthakan@fusionsol.com</span>
+                        <span class="cv-contact-item"> • Bangkok, Thailand</span>
+                        <span class="cv-contact-item"> • linkedin.com/in/panthbs</span>
+                        <span class="cv-contact-item"> • github.com/panthbs</span>
+                        <span class="cv-contact-item">See more at: <a href="https://panthbs.github.io" target="_blank">panthbs.github.io</a></span>
+                    </div>
+                </div>
+                
+                <!-- Header -->
+                <header class="cv-header">
+                    <h1 class="cv-name">Panthakan Boonsuriyatham</h1>
+                    <div class="cv-title">AI Researcher — Retrieval &amp; Knowledge Systems</div>
+                    <div class="cv-contact">
+                        <span class="cv-contact-item">📧 <a href="mailto:panthakan@fusionsol.com">panthakan@fusionsol.com</a></span>
+                        <span class="cv-contact-item">📍 Bangkok, Thailand</span>
+                        <span class="cv-contact-item">💼 <a href="https://linkedin.com/in/panthbs" target="_blank">linkedin.com/in/panthbs</a></span>
+                        <span class="cv-contact-item">🐙 <a href="https://github.com/panthbs" target="_blank">github.com/panthbs</a></span>
+                        <span class="cv-contact-item">🌐 <a href="https://panthbs.github.io" target="_blank">panthbs.github.io</a></span>
+                    </div>
+
+                </header>
+                
+                <!-- Professional Summary -->
+                <section class="cv-section">
+                    <h2 class="cv-section-title">Professional Summary</h2>
+                    <p class="cv-summary">
+                        AI Researcher focused on knowledge management, retrieval systems, RAG, and knowledge-graph design—turning
+                        problems and ideas into working AI solutions. Currently pursuing a Ph.D. in Computer Science (Information Retrieval)
+                        while building retrieval frameworks, smart search engines, and agentic RAG chatbots for government and enterprise clients.
+                        Strong mathematical and statistical foundation, with production experience in ML systems at scale (1M+ customers).
+                        Silver Award Winner (Runner-up) and Thailand representative at ASEAN Digital Awards 2026 for AI-driven disease classification.
+                    </p>
+                </section>
+                
+                <!-- Work Experience -->
+                <section class="cv-section">
+                    <h2 class="cv-section-title">Work Experience</h2>
+                    
+                    <div class="cv-item">
+                        <div class="cv-item-header">
+                            <h3 class="cv-item-title">AI Researcher</h3>
+                            <div class="cv-item-subtitle">Fusion Solution</div>
+                            <div class="cv-item-meta">Bangkok, Thailand • August 2025 – Present</div>
+                        </div>
+                        <ul class="cv-item-desc">
+                            <li>Develop advanced AI techniques for R&D team focusing on information retrieval and recommendation systems</li>
+                            <li>Research and implement state-of-the-art ML algorithms for production deployment</li>
+                            <li>Collaborate with academic institutions (Kasetsart University, National Corn and Sorghum Research Center)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="cv-item">
+                        <div class="cv-item-header">
+                            <h3 class="cv-item-title">Data Scientist</h3>
+                            <div class="cv-item-subtitle">Fusion Solution</div>
+                            <div class="cv-item-meta">Bangkok, Thailand • May 2025 – Present</div>
+                        </div>
+                        <ul class="cv-item-desc">
+                            <li>Build end-to-end ML models for retail business optimization across all regions of Thailand</li>
+                            <li>Develop customer segmentation model serving 1M+ customers using K-means, hierarchical clustering, DBSCAN</li>
+                            <li>Deploy product recommendation engine covering 200+ products using collaborative filtering and deep learning</li>
+                            <li>Design and implement search engine model with NLP techniques for 300+ product catalog</li>
+                            <li>Create data pipelines using Azure, SQL, and Python frameworks for business analytics</li>
+                        </ul>
+                    </div>
+                </section>
+                
+                <!-- Education -->
+                <section class="cv-section">
+                    <h2 class="cv-section-title">Education</h2>
+                    
+                    <div class="cv-item">
+                        <div class="cv-item-header">
+                            <h3 class="cv-item-title">Ph.D. in Computer Science</h3>
+                            <div class="cv-item-subtitle">Chulalongkorn University, Bangkok, Thailand</div>
+                            <div class="cv-item-meta">2026 – Present</div>
+                        </div>
+                        <ul class="cv-item-desc">
+                            <li><strong>Research Area:</strong> Information Retrieval</li>
+                            <li>Focus: Information extraction, information retrieval, AI-driven retrieval techniques</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="cv-item">
+                        <div class="cv-item-header">
+                            <h3 class="cv-item-title">M.Phil. in Statistics</h3>
+                            <div class="cv-item-subtitle">University of Glasgow, Glasgow, United Kingdom</div>
+                            <div class="cv-item-meta">2022 – 2024 • Completed in 2 years</div>
+                        </div>
+                        <ul class="cv-item-desc">
+                            <li><strong>Thesis:</strong> "Changepoint Detection for Net Electricity Demand Modelling in Great Britain"</li>
+                            <li>Advanced research in statistical changepoint detection and energy demand forecasting</li>
+                            <li>Fully funded DPST scholarship for higher-level study abroad</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="cv-item">
+                        <div class="cv-item-header">
+                            <h3 class="cv-item-title">M.Sc. in Data Analytics (Distinction Honours)</h3>
+                            <div class="cv-item-subtitle">University of Glasgow, Glasgow, United Kingdom</div>
+                            <div class="cv-item-meta">2021 – 2022 • Completed in 1 year</div>
+                            <div class="cv-item-degreeaward">Graduated with Distinction Degree (Equivalent to First Class Honours in Thailand)</div>
+                            <div class="cv-item-gpa">GPA: 19.22 CGS (Common Grading Scale)</div>
+                        </div>
+                        <ul class="cv-item-desc">
+                            <li><strong>Dissertation:</strong> "Analysis of Course and Degree Results in a University Programme"</li>
+                            <li>Specialized in statistical modeling, machine learning, and business intelligence</li>
+                            <li>Fully funded DPST scholarship for higher-level study abroad</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="cv-item">
+                        <div class="cv-item-header">
+                            <h3 class="cv-item-title">B.Sc. in Mathematics (First Class Honours)</h3>
+                            <div class="cv-item-subtitle">Silpakorn University, Nakhon Pathom, Thailand</div>
+                            <div class="cv-item-meta">2016 – 2019 • Completed in 3.5 years</div>
+                            <div class="cv-item-degreeaward">Graduate with First Class Honours</div>
+                            <div class="cv-item-gpa">GPA: 3.96</div>
+                        </div>
+                        <ul class="cv-item-desc">
+                            <li><strong>Project:</strong> "Some Properties of Prime-Cubed Cyclotomic Cosets in Cyclic Group ℤₘ"</li>
+                            <li>Best Undergraduate Project Presentation Award in Mathematics, DPST Conference (2020)</li>
+                            <li>DPST Short Research Award, University of California, San Diego (2019)</li>
+                            <li>Outstanding Student Scholarship (2016–2020) • Fully funded DPST government scholarship</li>
+                        </ul>
+                    </div>
+                </section>
+                
+                <!-- Page Break for Print -->
+                <div class="page-break-before"></div>
+                
+                <!-- Key Projects & Research -->
+                <section class="cv-section">
+                    <h2 class="cv-section-title">Key Projects & Research</h2>
+                    
+                    <div class="cv-item">
+                        <div class="cv-item-header">
+                            <h3 class="cv-item-title">Intelligent AgriDiagnose: AI-Powered Agricultural Disease Diagnosis</h3>
+                            <div class="cv-item-meta">Kasetsart University, National Corn Research Center Thailand</div>
+                        </div>
+                        <ul class="cv-item-desc">
+                            <li><strong>Recognition:</strong> Silver Award Winner (Runner-up) at ASEAN Digital Awards 2026 (Digital Innovation Category, Hanoi, Vietnam)</li>
+                            <li><strong>Thailand Representative:</strong> Selected to represent Thailand for ASEAN region in Digital Innovation sector</li>
+                            <li>Developed ResNet-based deep learning model integrated into Line, WhatsApp, and Facebook Messenger for real-time corn disease classification</li>
+                            <li>Empowers farmers with accessible AI diagnosis without app downloads—scientifically validated and production-ready</li>
+                            <li>Collaborated with leading agricultural research institutions for real-world deployment at scale</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="cv-item">
+                        <div class="cv-item-header">
+                            <h3 class="cv-item-title">Customer Segmentation & Product Recommendation Systems</h3>
+                            <div class="cv-item-meta">Fusion Solution • Production Deployment</div>
+                        </div>
+                        <ul class="cv-item-desc">
+                            <li>Customer Segmentation: K-means, hierarchical clustering, DBSCAN on 1M+ customer dataset</li>
+                            <li>Product Recommendations: Collaborative filtering, matrix factorization, deep learning for 200+ products</li>
+                            <li>Demand Forecasting: Time-series analysis for inventory optimization across Thailand regions</li>
+                            <li>Search Engine: NLP-based query routing and information retrieval for 300+ product catalog</li>
+                        </ul>
+                    </div>
+                </section>
+                
+                <!-- Previous Projects -->
+                <section class="cv-section" id="previous-projects-section">
+                    <h2 class="cv-section-title">Previous Projects</h2>
+                    
+                    <div class="projects-filter">
+                        <label for="project-type-filter">Filter by type:</label>
+                        <select id="project-type-filter">
+                            <option value="all">All Projects</option>
+                        </select>
+                        
+                        <label for="project-sort">Sort by:</label>
+                        <select id="project-sort">
+                            <option value="newest">Newest First</option>
+                            <option value="oldest">Oldest First</option>
+                        </select>
+                    </div>
+                    
+                    <ul class="previous-projects-list" id="projects-list">
+                        <!-- Projects will be loaded dynamically -->
+                    </ul>
+                </section>
+
+                <!-- Two-Column Layout for Skills & Additional Info -->
+                <div class="cv-two-col">
+                    <div class="cv-sidebar">
+                        <!-- Technical Skills -->
+                        <section class="cv-section">
+                            <h2 class="cv-section-title">Technical Skills</h2>
+                            
+                            <div class="cv-skills-group">
+                                <div class="cv-skills-title">Programming</div>
+                                <div class="cv-skills-list">
+                                    <span class="cv-skill-tag">Python</span>
+                                    <span class="cv-skill-tag">R</span>
+                                    <span class="cv-skill-tag">SQL</span>
+                                    <span class="cv-skill-tag">C/C++</span>
+                                    <span class="cv-skill-tag">MATLAB</span>
+                                </div>
+                            </div>
+                            
+                            <div class="cv-skills-group">
+                                <div class="cv-skills-title">ML/DL Frameworks</div>
+                                <div class="cv-skills-list">
+                                    <span class="cv-skill-tag">TensorFlow</span>
+                                    <span class="cv-skill-tag">PyTorch</span>
+                                    <span class="cv-skill-tag">scikit-learn</span>
+                                    <span class="cv-skill-tag">pandas</span>
+                                    <span class="cv-skill-tag">NumPy</span>
+                                    <span class="cv-skill-tag">PySpark</span>
+                                </div>
+                            </div>
+                            
+                            <div class="cv-skills-group">
+                                <div class="cv-skills-title">Cloud Platforms</div>
+                                <div class="cv-skills-list">
+                                    <span class="cv-skill-tag">Microsoft Azure</span>
+                                    <span class="cv-skill-tag">Azure ML</span>
+                                    <span class="cv-skill-tag">Azure AI Studio</span>
+                                    <span class="cv-skill-tag">Google Cloud</span>
+                                    <span class="cv-skill-tag">Vertex AI</span>
+                                    <span class="cv-skill-tag">BigQuery</span>
+                                </div>
+                            </div>
+                            
+                            <div class="cv-skills-group">
+                                <div class="cv-skills-title">Data Tools</div>
+                                <div class="cv-skills-list">
+                                    <span class="cv-skill-tag">Microsoft Fabric</span>
+                                    <span class="cv-skill-tag">Power BI</span>
+                                    <span class="cv-skill-tag">Seaborn</span>
+                                    <span class="cv-skill-tag">Matplotlib</span>
+                                    <span class="cv-skill-tag">ggplot2</span>
+                                </div>
+                            </div>
+                        </section>
+                        
+                        <!-- Language Proficiency -->
+                        <section class="cv-section">
+                            <h2 class="cv-section-title">Languages</h2>
+                            <div class="cv-lang-item">
+                                <span class="cv-lang-name">Thai</span>
+                                <span class="cv-lang-level">Native</span>
+                            </div>
+                            <div class="cv-lang-item">
+                                <span class="cv-lang-name">English</span>
+                                <span class="cv-lang-level">Professional</span>
+                            </div>
+                        </section>
+                        
+                        <!-- Teaching Experience -->
+                        <section class="cv-section">
+                            <h2 class="cv-section-title">Teaching</h2>
+                            <div class="cv-item">
+                                <div class="cv-item-header">
+                                    <h3 class="cv-item-title" style="font-size: 1rem;">Precalculus Tutor (Freshman Preparation Program)</h3>
+                                    <div class="cv-item-subtitle" style="font-size: 0.85rem;">Silpakorn University</div>
+                                    <div class="cv-item-meta">2017 – 2019</div>
+                                </div>
+                                <div class="cv-item-header">
+                                    <h3 class="cv-item-title" style="font-size: 1rem;">Mathematics and Computer Olympiad Tutor (High School Bootcamp)</h3>
+                                    <div class="cv-item-subtitle" style="font-size: 0.85rem;">Princess Chulabhorn Science High Schools (PCSHS Phetchaburi)</div>
+                                    <div class="cv-item-meta">2016 – 2020</div>
+                                </div>
+                            </div>
+                        </section>
+                        
+                    </div>
+                    
+                    <div class="cv-main">
+                        <!-- Certifications (Curated) -->
+                        <section class="cv-section">
+                            <h2 class="cv-section-title">Professional Certifications</h2>
+                            
+                            <div class="cv-cert-group">
+                                <div class="cv-cert-title">Microsoft Certified (5 Associate-Level)</div>
+                                <ul class="cv-cert-list">
+                                    <li>Azure AI Engineer Associate (Aug 2025)</li>
+                                    <li>Azure Data Scientist Associate (May 2025)</li>
+                                    <li>Fabric Data Engineer Associate (Jun 2025)</li>
+                                    <li>Fabric Analytics Engineer Associate (Sep 2025)</li>
+                                    <li>Azure AI Fundamentals (Oct 2025)</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="cv-cert-group">
+                                <div class="cv-cert-title">Google Cloud Certified</div>
+                                <ul class="cv-cert-list">
+                                    <li>Professional Machine Learning Engineer (Nov 2025)</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="cv-cert-group">
+                                <div class="cv-cert-title">Other Professional Certifications</div>
+                                <ul class="cv-cert-list">
+                                    <li>Databricks Academy Accreditation - Generative AI Fundamentals (Jan 2026)</li>
+                                    <li>Microsoft AI Discovery Cards – Train The Trainer (Dec 2025)</li>
+                                    <li>Multiple Applied Skills & Specialized Labs (22 total certifications)</li>
+                                </ul>
+                            </div>
+                        </section>
+                        
+                        <!-- Awards & Recognition -->
+                        <section class="cv-section">
+                            <h2 class="cv-section-title">Awards & Recognition</h2>
+                            <ul class="cv-item-desc">
+                                <li><strong>Silver Award (Runner-up)</strong> – ASEAN Digital Awards 2026, Digital Innovation Category, Hanoi, Vietnam (January 15, 2026)</li>
+                                <li><strong>Thailand Representative</strong> – ASEAN Digital Awards 2026 for ASEAN region in Digital Innovation sector</li>
+                                <li><strong>Best Undergraduate Project Presentation Award</strong> – DPST Conference (2020)</li>
+                                <li><strong>DPST Short Research Award</strong> – University of California, San Diego (2019)</li>
+                                <li><strong>Highest GPA Awards</strong> – All undergraduate years (1st, 2nd, 3rd, 4th year)</li>
+                                <li><strong>10-Year Scholarship Funding</strong> – DPST Government Scholarship (2014–2024)</li>
+                            </ul>
+                        </section>
+                        
+                        <!-- Scholarships -->
+                        <section class="cv-section">
+                            <h2 class="cv-section-title">Scholarships</h2>
+                            <ul class="cv-item-desc">
+                                <li>Fully funded DPST scholarship for higher-level study abroad (2020–2024)</li>
+                                <li>Fully funded government scholarship for Science and Technology - DPST (2014–2024)</li>
+                                <li>Outstanding Student Scholarship, Silpakorn University (2016–2020)</li>
+                            </ul>
+                        </section>
+                        
+                        <!-- References -->
+                        <section class="cv-section">
+                            <h2 class="cv-section-title">References</h2>
+                            <p style="margin: 0; color: var(--cv-muted); font-style: italic;">
+                                Available upon request
+                            </p>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="../assets/js/theme.js"></script>
+    <script>
+        // Load and display projects from JSON
+        let allProjects = [];
+        
+        function formatDate(dateStr) {
+            const [year, month] = dateStr.split('-');
+            const months = ['January', 'February', 'March', 'April', 'May', 'June', 
+                          'July', 'August', 'September', 'October', 'November', 'December'];
+            return `${months[parseInt(month) - 1]} ${year}`;
+        }
+        
+        function renderProjects(projects) {
+            const projectsList = document.getElementById('projects-list');
+            projectsList.innerHTML = '';
+            
+            projects.forEach(project => {
+                const li = document.createElement('li');
+                li.innerHTML = `<span class="project-date">${formatDate(project.date)}</span> <span class="project-title">${project.title}</span>`;
+                projectsList.appendChild(li);
+            });
+        }
+        
+        function filterAndSortProjects() {
+            const typeFilter = document.getElementById('project-type-filter').value;
+            const sortOrder = document.getElementById('project-sort').value;
+            
+            let filtered = typeFilter === 'all' 
+                ? [...allProjects] 
+                : allProjects.filter(p => p.type === typeFilter);
+            
+            filtered.sort((a, b) => {
+                if (sortOrder === 'newest') {
+                    return b.date.localeCompare(a.date);
+                } else {
+                    return a.date.localeCompare(b.date);
+                }
+            });
+            
+            renderProjects(filtered);
+        }
+        
+        function populateTypeFilter() {
+            const types = [...new Set(allProjects.map(p => p.type))].sort();
+            const typeFilter = document.getElementById('project-type-filter');
+            
+            types.forEach(type => {
+                const option = document.createElement('option');
+                option.value = type;
+                option.textContent = type.charAt(0).toUpperCase() + type.slice(1);
+                typeFilter.appendChild(option);
+            });
+        }
+        
+        // Load projects on page load
+        fetch('./projects-log.json')
+            .then(response => response.json())
+            .then(data => {
+                allProjects = data.projects;
+                populateTypeFilter();
+                filterAndSortProjects();
+            })
+            .catch(error => {
+                // projects-log.json is kept local/private (git-ignored) and is not
+                // published, so on the public site this fetch fails by design.
+                // Hide the whole section rather than showing an error.
+                const section = document.getElementById('previous-projects-section');
+                if (section) section.style.display = 'none';
+            });
+        
+        // Add event listeners
+        document.getElementById('project-type-filter').addEventListener('change', filterAndSortProjects);
+        document.getElementById('project-sort').addEventListener('change', filterAndSortProjects);
+    </script>
+</body>
+</html>

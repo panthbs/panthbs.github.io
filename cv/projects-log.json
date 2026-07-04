@@ -1,0 +1,60 @@
+{
+  "_comment": "PUBLIC project log — project title, date, and type only. Client/organization names are intentionally omitted for confidentiality. The full internal version with organizations is kept locally in projects-log.private.json (git-ignored).",
+  "projects": [
+    {
+      "date": "2025-06",
+      "title": "Sentiment Analysis and Product Recommendation for Sales Optimization",
+      "type": "R&D"
+    },
+    {
+      "date": "2025-06",
+      "title": "Machine Learning and Optimization for Full Truckload and Order Recommendation",
+      "type": "Customer"
+    },
+    {
+      "date": "2025-07",
+      "title": "Corn Disease Classification using Deep Learning",
+      "type": "Collaboration"
+    },
+    {
+      "date": "2025-08",
+      "title": "Customer Segmentation using Machine Learning Techniques",
+      "type": "POC"
+    },
+    {
+      "date": "2025-08",
+      "title": "Improving OCR Accuracy in Thai Text by Removing Strikeouts",
+      "type": "POC"
+    },
+    {
+      "date": "2025-09",
+      "title": "Intelligent AgriDiagnose",
+      "type": "Collaboration"
+    },
+    {
+      "date": "2025-10",
+      "title": "Information Retrieval Framework using Knowledge Graph",
+      "type": "R&D"
+    },
+    {
+      "date": "2025-11",
+      "title": "Smart Search Engine",
+      "type": "Customer"
+    },
+    {
+      "date": "2026-01",
+      "title": "Agentic AI Chatbot for Medical Summarization",
+      "type": "POC"
+    },
+    {
+      "date": "2026-02",
+      "title": "Real-Time Information Retrieval Assistant for Call Center Agents",
+      "type": "POC"
+    },
+    {
+      "date": "2026-04",
+      "title": "Knowledge Management and Knowledge Graph Platform",
+      "type": "R&D"
+    }
+  ]
+}
