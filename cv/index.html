@@ -893,32 +893,7 @@
                         <section class="cv-section">
                             <h2 class="cv-section-title">Professional Certifications</h2>
                             
-                            <div class="cv-cert-group">
-                                <div class="cv-cert-title">Microsoft Certified (5 Associate-Level)</div>
-                                <ul class="cv-cert-list">
-                                    <li>Azure AI Engineer Associate (Aug 2025)</li>
-                                    <li>Azure Data Scientist Associate (May 2025)</li>
-                                    <li>Fabric Data Engineer Associate (Jun 2025)</li>
-                                    <li>Fabric Analytics Engineer Associate (Sep 2025)</li>
-                                    <li>Azure AI Fundamentals (Oct 2025)</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="cv-cert-group">
-                                <div class="cv-cert-title">Google Cloud Certified</div>
-                                <ul class="cv-cert-list">
-                                    <li>Professional Machine Learning Engineer (Nov 2025)</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="cv-cert-group">
-                                <div class="cv-cert-title">Other Professional Certifications</div>
-                                <ul class="cv-cert-list">
-                                    <li>Databricks Academy Accreditation - Generative AI Fundamentals (Jan 2026)</li>
-                                    <li>Microsoft AI Discovery Cards – Train The Trainer (Dec 2025)</li>
-                                    <li>Multiple Applied Skills & Specialized Labs (22 total certifications)</li>
-                                </ul>
-                            </div>
+                            <div id="cv-certs-content"></div>
                         </section>
                         
                         <!-- Awards & Recognition -->
@@ -1027,6 +1002,52 @@
                 if (section) section.style.display = 'none';
             });
         
+        // Sync certifications from certs.json
+        (function () {
+          fetch('../certifications/certs.json')
+            .then(function (r) { return r.json(); })
+            .then(function (data) {
+              function certDate(d) {
+                return new Date(d + 'T12:00:00').toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+              }
+              function stripPrefix(t) {
+                return t.replace(/^(Microsoft Certified|Google Cloud Certified|Microsoft Applied Skills):\s*/i, '');
+              }
+              var msCerts = data.filter(function (c) {
+                return c.issuer === 'Microsoft' && (c.tier === 'major-cert' || c.tier === 'minor-cert');
+              });
+              var gcpCerts = data.filter(function (c) {
+                return c.issuer === 'Google Cloud' && c.tier === 'major-cert';
+              });
+              var otherCerts = data.filter(function (c) {
+                return (c.tier === 'minor-cert' && c.issuer !== 'Microsoft') || c.tier === 'training';
+              });
+              var msSkillCount = data.filter(function (c) { return c.tier === 'skill' && c.issuer === 'Microsoft'; }).length;
+              var gcpSkillCount = data.filter(function (c) { return c.tier === 'skill' && c.issuer === 'Google Cloud'; }).length;
+              var courseCount = data.filter(function (c) { return c.tier === 'course'; }).length;
+
+              var html = '';
+
+              html += '<div class="cv-cert-group"><div class="cv-cert-title">Microsoft Certified (' + msCerts.length + ' credentials)</div><ul class="cv-cert-list">'
+                + msCerts.map(function (c) { return '<li>' + stripPrefix(c.title) + ' (' + certDate(c.date) + ')</li>'; }).join('')
+                + '</ul></div>';
+
+              html += '<div class="cv-cert-group"><div class="cv-cert-title">Google Cloud Certified</div><ul class="cv-cert-list">'
+                + gcpCerts.map(function (c) { return '<li>' + stripPrefix(c.title) + ' (' + certDate(c.date) + ')</li>'; }).join('')
+                + '</ul></div>';
+
+              var otherItems = otherCerts.map(function (c) { return '<li>' + c.title + ' (' + certDate(c.date) + ')</li>'; });
+              if (msSkillCount > 0) otherItems.push('<li>' + msSkillCount + ' Microsoft Applied Skills badges</li>');
+              if (gcpSkillCount > 0) otherItems.push('<li>' + gcpSkillCount + ' Google Cloud skills &amp; labs</li>');
+              if (courseCount > 0) otherItems.push('<li>' + courseCount + ' professional courses</li>');
+              html += '<div class="cv-cert-group"><div class="cv-cert-title">Other Professional Certifications</div><ul class="cv-cert-list">'
+                + otherItems.join('') + '</ul></div>';
+
+              document.getElementById('cv-certs-content').innerHTML = html;
+            })
+            .catch(function () {});
+        })();
+
         // Add event listeners
         document.getElementById('project-type-filter').addEventListener('change', filterAndSortProjects);
         document.getElementById('project-sort').addEventListener('change', filterAndSortProjects);

@@ -452,56 +452,8 @@
       <h2><a href=./certifications/>Certifications</a></h2>
       <p class=lead>Professional certifications and verified credentials.</p>
       
-      <!-- Microsoft Learn Credentials -->
-      <div class=card>
-        <h3 style="margin:0 0 16px;">Microsoft Certified Credentials</h3>
-        <div class=cert-grid>
-          <a href=https://learn.microsoft.com/api/credentials/share/en-us/panthakan/47509D7BF6A2609D?sharingId=330F3C1D8EDC20CC target=_blank class=cert-tile style="background: #6a9679;">
-            <img src=https://learn.microsoft.com/media/learn/certification/badges/microsoft-certified-fundamentals-badge.svg alt=Certificate class=cert-icon>
-            <div class=cert-info>Microsoft Certified</div>
-            <div class=cert-title>Azure AI Fundamentals</div>
-          </a>
-          
-          <a href=https://learn.microsoft.com/api/credentials/share/en-us/panthakan/114C2C3D1519A18?sharingId=330F3C1D8EDC20CC target=_blank class=cert-tile style="background: #6a9679;">
-            <img src=https://learn.microsoft.com/media/learn/certification/badges/microsoft-certified-associate-badge.svg alt=Certificate class=cert-icon>
-            <div class=cert-info>Microsoft Certified</div>
-            <div class=cert-title>Azure AI Engineer Associate</div>
-          </a>
-          
-          <a href=https://learn.microsoft.com/api/credentials/share/en-us/panthakan/40235EC959AC1842?sharingId=330F3C1D8EDC20CC target=_blank class=cert-tile style="background: #6a9679;">
-            <img src=https://learn.microsoft.com/media/learn/certification/badges/microsoft-certified-associate-badge.svg alt=Certificate class=cert-icon>
-            <div class=cert-info>Microsoft Certified</div>
-            <div class=cert-title>Azure Data Scientist Associate</div>
-          </a>
-          
-          <a href=https://learn.microsoft.com/api/credentials/share/en-us/panthakan/739049C54B9BEF8F?sharingId=330F3C1D8EDC20CC target=_blank class=cert-tile style="background: #6a9679;">
-            <img src=https://learn.microsoft.com/media/learn/certification/badges/microsoft-certified-associate-badge.svg alt=Certificate class=cert-icon>
-            <div class=cert-info>Microsoft Certified</div>
-            <div class=cert-title>Fabric Analytics Engineer Associate</div>
-          </a>
-          
-          <a href=https://learn.microsoft.com/api/credentials/share/en-us/panthakan/5FCD7E0531529F25?sharingId=330F3C1D8EDC20CC target=_blank class=cert-tile style="background: #6a9679;">
-            <img src=https://learn.microsoft.com/media/learn/certification/badges/microsoft-certified-associate-badge.svg alt=Certificate class=cert-icon>
-            <div class=cert-info>Microsoft Certified</div>
-            <div class=cert-title>Fabric Data Engineer Associate</div>
-          </a>
-
-          <a href=https://learn.microsoft.com/api/credentials/share/en-u/panthakan/85E4AFE28E96BF5A?sharingId=330F3C1D8EDC20CC target=_blank class=cert-tile style="background: #6a9679;">
-            <img src=https://learn.microsoft.com/media/learn/certification/badges/microsoft-certified-associate-badge.svg alt=Certificate class=cert-icon>
-            <div class=cert-info>Microsoft Certified</div>
-            <div class=cert-title>Information Security Administrator Associate</div>
-          </a>
-
-        </div>
-        
-        <h3 style="margin:16px 0 16px;">Google Cloud Certified Credentials</h3>
-        <div class=cert-grid>
-          <a href=https://www.credly.com/badges/c3413eac-d775-40dd-b5c2-8707c33259c1/public_url target=_blank class=cert-tile style="background: #6a9679;">
-            <img src=https://images.credly.com/size/680x680/images/05e71e7e-92a1-4821-8530-4176b2e3c4b4/image.png alt=Certificate class=cert-icon>
-            <div class=cert-info>Google Cloud Certified</div>
-            <div class=cert-title>Professional Machine Learning Engineer</div>
-          </a>
-        </div>
+      <div class=card id="certs-card">
+        <p style="color:var(--muted);text-align:center;padding:16px 0;">Loading certifications…</p>
       </div>
     </section>
 
@@ -569,6 +521,44 @@
   <script>
     // Year
     document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+  <script>
+    // Sync certifications from certifications/certs.json
+    (function () {
+      fetch('./certifications/certs.json')
+        .then(function (r) { return r.json(); })
+        .then(function (data) {
+          var shown = data.filter(function (c) { return c.tier === 'major-cert' || c.tier === 'minor-cert'; });
+          var groups = {};
+          var order = [];
+          shown.forEach(function (c) {
+            if (!groups[c.issuer]) { groups[c.issuer] = []; order.push(c.issuer); }
+            groups[c.issuer].push(c);
+          });
+          var unique = order.filter(function (v, i, a) { return a.indexOf(v) === i; });
+          var issuerLabel = {
+            'Microsoft': 'Microsoft Certified Credentials',
+            'Google Cloud': 'Google Cloud Certified Credentials'
+          };
+          var html = '';
+          unique.forEach(function (issuer, idx) {
+            var label = issuerLabel[issuer] || (issuer + ' Credentials');
+            html += '<h3 style="margin:' + (idx > 0 ? '16px' : '0') + ' 0 16px;">' + label + '</h3>';
+            html += '<div class="cert-grid">';
+            groups[issuer].forEach(function (c) {
+              var shortTitle = c.title.replace(/^(Microsoft Certified|Google Cloud Certified):\s*/i, '');
+              html += '<a href="' + c.link + '" target="_blank" rel="noopener" class="cert-tile" style="background:#6a9679;">'
+                + '<img src="' + c.image + '" alt="' + c.title + '" class="cert-icon">'
+                + '<div class="cert-info">' + issuer + '</div>'
+                + '<div class="cert-title">' + shortTitle + '</div>'
+                + '</a>';
+            });
+            html += '</div>';
+          });
+          document.getElementById('certs-card').innerHTML = html;
+        })
+        .catch(function () {});
+    })();
   </script>
   <script src="./assets/js/theme.js"></script>
 </body>

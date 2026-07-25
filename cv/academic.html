@@ -801,55 +801,8 @@
                 
                 <!-- Professional Certifications -->
                 <section class="cv-section">
-                    <h2 class="cv-section-title">Professional Certifications (22 Total)</h2>
-                    
-                    <div class="cv-cert-group">
-                        <div class="cv-cert-title">Microsoft Certified</div>
-                        <ul class="cv-cert-list">
-                            <li>Azure AI Engineer Associate (AI-102) – August 2025</li>
-                            <li>Azure Data Scientist Associate (DP-100) – May 2025</li>
-                            <li>Fabric Analytics Engineer Associate (DP-600) – September 2025</li>                            
-                            <li>Fabric Data Engineer Associate (DP-700) – June 2025</li>
-                            <li>Azure AI Fundamentals (AI-900) – October 2025</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="cv-cert-group">
-                        <div class="cv-cert-title">Google Cloud Certified</div>
-                        <ul class="cv-cert-list">
-                            <li>Professional Machine Learning Engineer – November 2025</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="cv-cert-group">
-                        <div class="cv-cert-title">Specialized Certifications & Training</div>
-                        <ul class="cv-cert-list">
-                            <li>Databricks Academy Accreditation - Generative AI Fundamentals (January 2026)</li>
-                            <li>Microsoft AI Discovery Cards – Train The Trainer (December 2025)</li>
-                            <li>Microsoft Applied Skills: Build Natural Language Processing Solution (September 2025)</li>
-                            <li>Microsoft Applied Skills: Real-Time Intelligence with Fabric (June 2025)</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="cv-cert-group">
-                        <div class="cv-cert-title">Google Cloud Skills & Labs (7 Courses)</div>
-                        <ul class="cv-cert-list">
-                            <li>Analyze and Visualize Looker Data</li>
-                            <li>Implement Cloud Security Fundamentals</li>
-                            <li>Derive Insights from BigQuery Data</li>
-                            <li>Engineer Data for Predictive Modeling with BigQuery ML</li>
-                            <li>Create ML Models with BigQuery ML</li>
-                            <li>Prepare Data for ML APIs</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="cv-cert-group">
-                        <div class="cv-cert-title">Business & Finance Fundamentals (6 Courses - CFI)</div>
-                        <ul class="cv-cert-list">
-                            <li>Professional Ethics • Excel Fundamentals • Accounting Fundamentals</li>
-                            <li>3-Statement Modeling • Capital Markets • Excel Formulas for Finance</li>
-                        </ul>
-                    </div>
+                    <h2 class="cv-section-title" id="academic-certs-title">Professional Certifications</h2>
+                    <div id="academic-certs-content"></div>
                 </section>
                 
                 <!-- Awards & Honors -->
@@ -944,5 +897,78 @@
     </div>
     
     <script src="../assets/js/theme.js"></script>
-</body>
-</html>
+    <script>
+        // Sync certifications from certs.json
+        (function () {
+          fetch('../certifications/certs.json')
+            .then(function (r) { return r.json(); })
+            .then(function (data) {
+              function certDate(d) {
+                return new Date(d + 'T12:00:00').toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+              }
+              function stripPrefix(t) {
+                return t.replace(/^(Microsoft Certified|Google Cloud Certified|Microsoft Applied Skills):\s*/i, '');
+              }
+
+              var msCerts = data.filter(function (c) {
+                return c.issuer === 'Microsoft' && (c.tier === 'major-cert' || c.tier === 'minor-cert');
+              });
+              var gcpMajor = data.filter(function (c) {
+                return c.issuer === 'Google Cloud' && c.tier === 'major-cert';
+              });
+              var specialized = data.filter(function (c) {
+                return (c.tier === 'minor-cert' && c.issuer !== 'Microsoft')
+                  || c.tier === 'training'
+                  || (c.tier === 'skill' && c.issuer === 'Microsoft');
+              });
+              var gcpSkills = data.filter(function (c) {
+                return c.tier === 'skill' && c.issuer === 'Google Cloud';
+              });
+              var cfCourses = data.filter(function (c) {
+                return c.tier === 'course' && c.issuer === 'Corporate Finance Institute';
+              });
+              var otherCourses = data.filter(function (c) {
+                return c.tier === 'course' && c.issuer !== 'Corporate Finance Institute';
+              });
+              var totalNonCourse = data.filter(function (c) { return c.tier !== 'course'; }).length;
+
+              var html = '';
+
+              html += '<div class="cv-cert-group"><div class="cv-cert-title">Microsoft Certified</div><ul class="cv-cert-list">'
+                + msCerts.map(function (c) { return '<li>' + stripPrefix(c.title) + ' \u2013 ' + certDate(c.date) + '</li>'; }).join('')
+                + '</ul></div>';
+
+              html += '<div class="cv-cert-group"><div class="cv-cert-title">Google Cloud Certified</div><ul class="cv-cert-list">'
+                + gcpMajor.map(function (c) { return '<li>' + stripPrefix(c.title) + ' \u2013 ' + certDate(c.date) + '</li>'; }).join('')
+                + '</ul></div>';
+
+              if (specialized.length > 0) {
+                html += '<div class="cv-cert-group"><div class="cv-cert-title">Specialized Certifications &amp; Training</div><ul class="cv-cert-list">'
+                  + specialized.map(function (c) { return '<li>' + c.title + ' (' + certDate(c.date) + ')</li>'; }).join('')
+                  + '</ul></div>';
+              }
+
+              if (gcpSkills.length > 0) {
+                html += '<div class="cv-cert-group"><div class="cv-cert-title">Google Cloud Skills &amp; Labs (' + gcpSkills.length + ' badges)</div><ul class="cv-cert-list">'
+                  + gcpSkills.map(function (c) { return '<li>' + c.title + '</li>'; }).join('')
+                  + '</ul></div>';
+              }
+
+              if (cfCourses.length > 0) {
+                html += '<div class="cv-cert-group"><div class="cv-cert-title">Business &amp; Finance Fundamentals (' + cfCourses.length + ' courses \u2013 CFI)</div><ul class="cv-cert-list">'
+                  + cfCourses.map(function (c) { return '<li>' + c.title + '</li>'; }).join('')
+                  + '</ul></div>';
+              }
+
+              if (otherCourses.length > 0) {
+                html += '<div class="cv-cert-group"><div class="cv-cert-title">Other Courses</div><ul class="cv-cert-list">'
+                  + otherCourses.map(function (c) { return '<li>' + c.title + ' (' + certDate(c.date) + ')</li>'; }).join('')
+                  + '</ul></div>';
+              }
+
+              document.getElementById('academic-certs-title').textContent = 'Professional Certifications (' + totalNonCourse + ' Total)';
+              document.getElementById('academic-certs-content').innerHTML = html;
+            })
+            .catch(function () {});
+        })();
+    </script>
