@@ -1,5 +1,21 @@
 [
   {
+    "title": "Github Copilot",
+    "issuer": "Microsoft",
+    "date": "2026-08-10",
+    "tier": "minor-cert",
+    "image": "https://learn.microsoft.com/media/learn/certification/badges/github-copilot.svg?branch=main",
+    "link": "https://learn.microsoft.com/api/credentials/share/en-us/panthakan/F009782FA41B416?sharingId=330F3C1D8EDC20CC"
+  },
+  {
+    "title": "Economics for Capital Markets",
+    "issuer": "Corporate Finance Institute",
+    "date": "2026-08-04",
+    "tier": "course",
+    "image": "https://api.accredible.com/v1/frontend/credential_website_embed_image/certificate/190571533",
+    "link": "https://www.credential.net/c289fb0c-fefc-475b-99e6-abf417a6069c"
+  },
+  {
     "title": "Microsoft Certified: SQL AI Developer Associate",
     "issuer": "Microsoft",
     "date": "2026-07-24",
